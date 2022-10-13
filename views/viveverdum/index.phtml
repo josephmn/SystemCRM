@@ -1,0 +1,298 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>BENEFICIOS | VENTA INTERNA | CONVENIOS</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <?php echo $this->verdum ?>
+
+                <!-- CONVENIOS -->
+                <section class="col-lg-6 connectedSortable">
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-handshake fa-shake"></i>
+                                &nbsp;<strong>CONVENIOS</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <?php echo $this->filas ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CONVENIOS EDUCATIVOS -->
+                <section class="col-lg-6 connectedSortable">
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-graduate fa-beat"></i>
+                                &nbsp;<strong>CONVENIOS EDUCATIVOS</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <?php echo $this->filase ?>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+</div>
+
+<!-- MODAL CONVENIO VENTANA + IMAGEN -->
+<div class="modal fade" id="modal-imagen" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>CONVENIOS</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="get-img" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONVENIO VENTANA + IMAGEN + TEXTO-->
+<div class="modal fade" id="modal-imagen-texto" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>CONVENIOS</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="draw-img" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONVENIO VENTANA + PDF -->
+<div class="modal fade" id="modal-pdf" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>CONVENIOS</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="get-pdf" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONVENIO VENTANA + PDF -->
+<div class="modal fade" id="modal-pdf-edu" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>CONVENIOS EDUCATIVOS</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="get-pdf-edu" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL SOLICITAR PEDIDO VENTAS -->
+<div class="modal fade" id="modal-pedido" data-backdrop="static">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b><i class="fa-solid fa-cart-shopping fa-bounce"></i>&nbsp;&nbsp;REGISTRAR NUEVA PEDIDO</b></h4>
+                <button id="close_pedido" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>PARA:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <!-- <input id="envio_para" type="text" value="programador.app02@verdum.com" class="form-control" autocomplete="off"> -->
+                                <input id="envio_para" type="text" value="backoffice01@verdum.com;backoffice02@verdum.com" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>CC:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_cc" type="text" value="<?php echo $_SESSION['correo'] ?>" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>ASUNTO:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_asunto" type="text" value="PEDIDO WEB: <?php echo $_SESSION['nombre'] . " - DNI: " . $_SESSION['dni'] ?>" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>SKU:</label>
+                            <select id="envio_sku" class="form-control select2bs4" data-placeholder="Seleccione SKU(s).." tabindex="1" style="width: 100%;">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>PRECIO:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_precio" type="text" class="form-control" value="0.00" tabindex="2" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>CANTIDAD:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_cantidad" type="number" class="form-control" min="1" tabindex="3" onkeypress='return solonumero(event)' autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>&nbsp;</label>
+                            <button id="envio-agregar" type="button" class="btn btn-warning btn-block" tabindex="4"><i class="fa-solid fa-plus"></i><b>&nbsp;&nbsp;AGREGAR</b></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <div id="carga">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <table id="example1" class="table table-bordered table-bordered">
+                        <thead>
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>SKU</th>
+                                <th>DESCRIPCION</th>
+                                <th>PRECIO</th>
+                                <th>CANTIDAD</th>
+                                <th>SUBTOTAL</th>
+                                <th>#</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablita-aci">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>BASE:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_base" style="text-align:right;" type="text" value="0.00" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>IGV (18%):</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_igv" style="text-align:right;" type="text" value="0.00" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>TOTAL (S/):</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="envio_total" style="font-weight: bold; text-align:right; background-color: #8fce00;" type="text" value="0.00" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btn-enviar" type="button" class="btn btn-success btn-block">
+                                <i class="fas fa-paper-plane"></i>
+                                &nbsp;&nbsp;<b>ENVIAR</b></button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-sm-6">
+                            <button id="btn-cancelar-agregar" type="button" class="btn btn-danger btn-block">
+                                <i class="fas fa-ban"></i>
+                                &nbsp;&nbsp;<b>CANCELAR</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,280 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>CONFIGURACIÓN DE PERIODOS PARA DOCUMENTOS</b>
+                    </h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-8 connectedSortable">
+
+                    <div class="card card-gray">
+
+                        <div class="card-header">
+                            <h3 class="card-title"><b>PERIODO - BOLETAS MENSUALES</b></h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <body style="text-align: justify;">
+                                <small class="text font-weight-bolder">El sistema genera de manera <b class="text-danger">automática </b> los periodos de pagos durante el año el primer dia de cada mes y posteriores.
+                                    El sistema tomara la firma del ultimo periodo generado a no ser que se ingrese de manera manual (antes del primer dia del mes) en un periodo establecido y en adelante el sistema asumira la nueva
+                                    firma como nueva. Tambien se puede actualizar la firma por periodos, siempre y cuando se carguen en los formato <b class="text-danger">*.jpg</b> o <b class="text-danger">*.png</b></b>.</small>
+                            </body>
+                            <br>
+                            <br>
+                            <button id="btnagregarperiodo" type="button" class="btn btn-success btn-block font-weight-bolder col-12" style="color: White;">
+                                <i class="fas fa-circle-plus"></i><span>&nbsp;&nbsp;Agregar periodo</span>
+                            </button>
+                            <br>
+                            <table id="example1" class="table table-bordered">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>#</th>
+                                        <th>Periodo</th>
+                                        <th>Firma</th>
+                                        <th>Estado</th>
+                                        <th>Usuario</th>
+                                        <th>Fecha y hora</th>
+                                        <th>#</th>
+                                        <th>#</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (isset($this->periodoboletas)) { ?>
+                                        <?php foreach ($this->periodoboletas as $tr) { ?>
+                                            <tr>
+                                                <td class="text-center"><?php echo $tr['i_id'] ?></td>
+                                                <td class="text-center"><?php echo $tr['v_periodo'] ?></td>
+
+                                                <td class='text-center'>
+                                                    <a href="<?php echo BASE_URL ?>/<?php echo $tr['v_firma'] ?>" target="_blank" class='btn btn-secondary btn-sm text-white'>
+                                                        <i class='fa fa-file-image'></i>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a><span class="badge bg-<?php echo $tr['v_color_estado'] ?>"><?php echo $tr['v_estado'] ?></span></a>
+                                                </td>
+                                                <td class="text-center"><?php echo $tr['v_lupd_user'] ?></td>
+                                                <td class="text-center"><?php echo $tr['d_lupd_date'] ?></td>
+
+                                                <td class='text-center'>
+                                                    <a id="<?php echo $tr['i_id'] ?>" nombre="<?php echo $tr['v_periodo'] ?>" estado="<?php echo $tr['i_estado'] ?>" class="btn btn-warning btn-sm editar" style="color:white">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                </td>
+
+                                                <td class='text-center'>
+                                                    <a id="<?php echo $tr['i_id'] ?>" nombre="<?php echo $tr['v_periodo'] ?>" class="btn btn-kimbo btn-sm imagen" style="color:white">
+                                                        <i class="fas fa-image"></i>
+                                                    </a>
+                                                </td>
+
+                                                <td class='text-center'>
+                                                    <a id="<?php echo $tr['i_id'] ?>" nombre="<?php echo $tr['v_periodo'] ?>" class='btn btn-danger btn-sm text-white eliminar'>
+                                                        <i class='fa fa-trash-alt'></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- MODAL AGREGAR PERIODO-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">AGREGAR PERIODO MANUAL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Periodo:</label>
+                        <input type="text" id="xperiodo" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <label class="form-label font-weight-bolder">Seleccionar archivo:</label>
+                            <div class="input-group">
+                                <input id="archivo" name="archivo" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="xbtnguardar" type="button" class="btn btn-success btn-block">
+                                <i class="fas fa-save"></i>
+                                <b>Guardar</b></button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-sm-6">
+                            <button id="xbtncancelar" type="button" class="btn btn-danger btn-block">
+                                <i class="fas fa-ban"></i>
+                                <b>Cancelar</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR PERIODO-->
+<div class="modal fade" id="modal-editar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ACTUALIZAR PERIODO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Código:</label>
+                        <input type="text" id="codigo" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Periodo:</label>
+                        <input type="text" id="periodo" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Estado:</label>
+                        <select id="estado" tabindex="2" class="form-control form-control-md">
+                            <option value="0">Inactivo</option>
+                            <option value="1">Activo</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btnguardar" type="button" class="btn btn-success btn-block">
+                                <i class="fas fa-save"></i>
+                                <b>Guardar</b></button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-sm-6">
+                            <button id="btncancelar" type="button" class="btn btn-danger btn-block">
+                                <i class="fas fa-ban"></i>
+                                <b>Cancelar</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL EDITAR IMAGEN DE PERIODO-->
+<div class="modal fade" id="modal-imagen" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ACTUALIZAR IMAGEN DE PERIODO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Código:</label>
+                        <input type="text" id="ycodigo" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Periodo:</label>
+                        <input type="text" id="yperiodo" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="input-group">
+                            <label class="form-label font-weight-bolder">Seleccionar archivo:</label>
+                            <div class="input-group">
+                                <input id="yarchivo" name="archivo" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="ybtnguardar" type="button" class="btn btn-success btn-block">
+                                <i class="fas fa-save"></i>
+                                <b>Guardar</b></button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-sm-6">
+                            <button id="ybtncancelar" type="button" class="btn btn-danger btn-block">
+                                <i class="fas fa-ban"></i>
+                                <b>Cancelar</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

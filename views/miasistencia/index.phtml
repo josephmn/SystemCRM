@@ -1,0 +1,144 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <section class="col-lg-12 connectedSortable">
+
+        <div class="card card-gray">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-pen-square"></i>
+              &nbsp;<strong>REGISTRO DE INCIDENCIA</strong>
+            </h3>
+            <div class="card-tools">
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="<?php echo BASE_URL ?>miasistencia/cargar_table" method="post">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Documento:</label>
+                    <div class="input-group date" id="documento" data-target-input="nearest">
+                      <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label>Nombres completos:</label>
+                    <div class="input-group date" id="nombres" data-target-input="nearest">
+                      <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Fecha inicio:</label>
+                    <div class="input-group date" id="finicio" data-target-input="nearest">
+                      <input id="finiciodate" name="finiciodate" type="text" class="form-control datetimepicker-input" data-target="#finicio" placeholder="dd/mm/aaaa">
+                      <div class="input-group-append" data-target="#finicio" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>Fecha fin:</label>
+                    <div class="input-group date" id="ffin" data-target-input="nearest">
+                      <input id="ffindate" name="ffindate" type="text" class="form-control datetimepicker-input" data-target="#ffin" placeholder="dd/mm/aaaa">
+                      <div class="input-group-append" data-target="#ffin" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" id="btn_filtrar" class="btn btn-success btn-block">
+                      <i class="fa-solid fa-filter"></i>
+                      &nbsp;&nbsp;<b>FILTRAR</b></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>CODIGO</th>
+                  <th>DNI</th>
+                  <th>DIA</th>
+                  <th>FECHA</th>
+                  <th>ENTRADA</th>
+                  <th>INI_REF</th>
+                  <th>TER_REF</th>
+                  <th>SALIDA</th>
+                  <th>COMENTARIO</th>
+                  <th>ASISTENCIA</th>
+                  <th>REFRIGERIO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (isset($this->filas)) { ?>
+                  <?php foreach ($this->filas as $fi) { ?>
+                    <tr>
+                      <td class="text-center"><?php echo $fi['CODIGO'] ?></td>
+                      <td class="text-center"><?php echo $fi['DNI'] ?></td>
+                      <td class="text-center"><?php echo $fi['DIA'] ?></td>
+                      <td class="text-center"><?php echo $fi['FECHA'] ?></td> <!-- <td><?php //echo date('d/m/Y',strtotime($fi['FECHA']))
+                                                                                        ?></td> -->
+                      <td class="text-center"><?php echo $fi['ENTRADA'] ?></td>
+                      <td class="text-center"><?php echo $fi['INI_REF'] ?></td>
+                      <td class="text-center"><?php echo $fi['TER_REF'] ?></td>
+                      <td class="text-center"><?php echo $fi['SALIDA'] ?></td>
+                      <td class="text-center"><?php echo $fi['COMENTARIO'] ?></td>
+                      <td class="text-center"><span class="badge bg-<?php echo $fi['ASISTENCIA_COLOR'] ?>"><?php echo $fi['ASISTENCIA'] ?></span></td>
+                      <td class="text-center"><span class="badge bg-<?php echo $fi['REFRIGERIO_COLOR'] ?>"><?php echo $fi['REFRIGERIO'] ?></span></td>
+                    </tr>
+                  <?php } ?>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+  </section>
+
+</div>

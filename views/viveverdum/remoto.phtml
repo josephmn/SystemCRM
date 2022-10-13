@@ -1,0 +1,146 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 style="color:gray"><b>TRABAJO REMOTO</b></h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a href="<?php echo BASE_URL ?>viveverdum/">Vive Verdum</a>
+            </li>
+            <li class="breadcrumb-item active">
+              TRABAJO REMOTO
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <section class="col-lg-4 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-house-laptop"></i>
+                &nbsp;<strong>REGISTRO TRABAJO REMOTO</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>DNI / CE:</label>
+                    <div class="input-group">
+                      <input id="documento" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" placeholder="Documento">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>NOMBRES Y APELLIDOS:</label>
+                    <div class="input-group">
+                      <input id="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" placeholder="Nombres y Apellidos">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>SEMANA:</label>
+                    <select id="semana" class="form-control">
+                      <?php foreach ($this->semana as $fx) { ?>
+                        <option value="<?php echo $fx['i_num_semana']; ?>"><?php echo $fx['v_descripcion']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <button id="btnagregar" type="button" class="btn btn-success btn-block"><b>REGISTRAR TRABAJO REMOTO</b></button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="col-lg-8 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fa-solid fa-house-laptop"></i>
+                &nbsp;<strong>TABLA TRABAJO REMOTO</strong>
+              </h3>
+            </div>
+            <div class="card-body">
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label>AÑO:</label>
+                  <div class="select2-success">
+                    <select id="anhio" class="form-control">
+                      <?php foreach ($this->anhios as $an) { ?>
+                        <option value="<?php echo $an['i_anhio']; ?>" <?php echo $an['v_selected']; ?>><?php echo $an['i_anhio']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group col-sm-3">
+                  <label>MARCACIÓN:</label>
+                  <div>
+                    <button type="button" id="btn-asistencia" class="btn btn-success btn-block"><i class="fas fa-user-clock"></i>&nbsp;&nbsp;<b>MARCACIÓN</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>SEMANA</th>
+                    <th>MES</th>
+                    <th>DECRIPCION</th>
+                    <th>ESTADO</th>
+                    <th>F.REGISTRO</th>
+                    <th>FECHA APROBACION</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="tbdet">
+                  <?php echo $this->tbflex ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>

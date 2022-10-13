@@ -1,0 +1,10 @@
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\bin\WSRecursos.dll.config
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\bin\WSRecursos.dll
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\bin\WSRecursos.pdb
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\bin\Newtonsoft.Json.dll
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\bin\Newtonsoft.Json.xml
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\obj\Debug\WSRecursos.csproj.CoreCompileInputs.cache
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\obj\Debug\WSRecursos.csproj.CopyComplete
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\obj\Debug\WSRecursos.dll
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\obj\Debug\WSRecursos.pdb
+C:\Users\programador.app02\Desktop\WSRecursos\WSRecursos\obj\Debug\WSRecursos.csproj.AssemblyReference.cache

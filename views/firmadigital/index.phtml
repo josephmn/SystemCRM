@@ -1,0 +1,86 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-pen-nib"></i>
+                                &nbsp;<strong>FIRMA DIGITAL</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="image">
+                                        <img id="idfirma" class="card-img-top" src="<?php echo BASE_URL . $_SESSION['firma'] ?>">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <p></p>
+                                        <p>Subir imagen (formato png peso max. 1MB)</p>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" name="archivo" class="custom-file-input" id="archivo">
+                                                <label class="custom-file-label" for="exampleInputFile">Cargar archivo...</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" id="btnsubir" name="btnsubir" class="btn btn-success btn-block">
+                                            <i class="fas fa-save"></i>
+                                            &nbsp;&nbsp;<b>GUARDAR</b></button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>

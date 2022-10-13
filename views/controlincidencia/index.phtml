@@ -1,0 +1,233 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+            <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+              <?php if ($this->_controlador == $menu['v_link']) {
+                echo strtoupper($menu['v_nombre']);
+              } else {
+                '';
+              } ?>
+            <?php } ?></b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-pen-square"></i>
+                &nbsp;<strong>CONTROL DE INCIDENCIA</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- <h3 class="card-title">DataTable with default features</h3> -->
+              <form action="<?php echo BASE_URL ?>controlincidencia/cargar_table" method="post">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <!-- text input finicio-->
+                    <div class="form-group">
+                      <label>Documento:</label>
+                      <div class="input-group date" id="documento" data-target-input="nearest">
+                        <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-8">
+                    <!-- text input finicio-->
+                    <div class="form-group">
+                      <label>Nombres completos:</label>
+                      <div class="input-group date" id="nombres" data-target-input="nearest">
+                        <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-4">
+                    <!-- text input finicio-->
+                    <div class="form-group">
+                      <label>Fecha inicio:</label>
+                      <div class="input-group date" id="finicio" data-target-input="nearest">
+                        <input id="finiciodate" name="finiciodate" type="text" class="form-control datetimepicker-input" data-target="#finicio" placeholder="dd/mm/aaaa">
+                        <div class="input-group-append" data-target="#finicio" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <!-- text input ffin-->
+                    <div class="form-group">
+                      <label>Fecha fin:</label>
+                      <div class="input-group date" id="ffin" data-target-input="nearest">
+                        <input id="ffindate" name="ffindate" type="text" class="form-control datetimepicker-input" data-target="#ffin" placeholder="dd/mm/aaaa">
+                        <div class="input-group-append" data-target="#ffin" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>&nbsp;</label>
+                      <button type="submit" id="btn_filtrar" class="btn btn-success btn-block"><b>Filtrar</b></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>CODIGO</th>
+                    <th>DNI</th>
+                    <th>NOMBRE</th>
+                    <th>TIPO SUSTENTO</th>
+                    <th>FECHA INCIDENCIA</th>
+                    <th>FECHA REGISTRO</th>
+                    <th>FECHA PROCESO</th>
+                    <th>COMENTARIO</th>
+                    <th>DIFERENCIA HORA</th>
+                    <th>ESTADO</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if (isset($this->incidencias)) { ?>
+                    <?php foreach ($this->incidencias as $inc) { ?>
+                      <tr>
+                        <td class="text-center"><?php echo $inc['v_cod_asistencia'] ?></td>
+                        <td class="text-center"><?php echo $inc['v_dni'] ?></td>
+                        <td class="text-center"><?php echo $inc['v_nombre'] ?></td>
+                        <td class="text-center"><?php echo $inc['v_tipo_sustento'] ?></td> <!-- <td><?php //echo date('d/m/Y',strtotime($fi['FECHA']))
+                                                                                                    ?></td> -->
+                        <td class="text-center"><?php echo $inc['d_fecha_incidencia'] ?></td>
+                        <td class="text-center"><?php echo $inc['d_fecha_registro'] ?></td>
+                        <td class='text-center'>
+                          <a style='display: <?php echo $inc['v_style_fechaproceso'] ?>' class="text-center"><?php echo $inc['d_fecha_proceso'] ?></a>
+                        </td>
+                        <td><?php echo $inc['v_comentario'] ?></td>
+                        <td class="text-center"><?php echo $inc['v_diferencia_hora'] ?></td>
+                        <td class="text-center"><span class="badge bg-<?php echo $inc['v_estado_color'] ?>"><?php echo $inc['v_estado'] ?></span></td>
+                        <td class='text-center'>
+                          <a id='<?php echo $inc['v_cod_asistencia'] ?>' class='btn btn-warning btn-sm text-black aprobar'><i class='fa fa-check'></i></a>
+                        </td>
+                        <td class='text-center'>
+                          <a id='<?php echo $inc['v_cod_asistencia'] ?>' class='btn btn-warning btn-sm text-black desaprobar'><i class='fa fa-ban'></i></a>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+
+          </div>
+
+        </section>
+        
+      </div>
+    </div>
+  </section>
+
+</div>
+    <!-- MODAL INCIDENCIA APROBAR-->
+    <div class="modal fade" id="modal-aprobar">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">CODIGO INCIDENCIA: <b><span id="codincidencia_aprobar"></span></b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group" align="center">
+              <p><b><big>¿Esta seguro de aprobar la incidencia?</big></b></p>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_si_aprobar" type="button" class="btn btn-warning btn-block"><b>Sí</b></button>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_no_aprobar" type="button" class="btn btn-warning btn-block"><b>No</b></button>
+            </div>
+
+            <div id="mensaje-eliminar"></div>
+
+          </div>
+
+        </div>
+
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+      <!-- /.modal -->
+    </div>
+
+    <!-- MODAL INCIDENCIA DESAPROBAR-->
+    <div class="modal fade" id="modal-desaprobar">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">CODIGO INCIDENCIA: <b><span id="codincidencia_desaprobar"></span></b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group" align="center">
+              <p><b><big>¿Esta seguro de desaprobar la incidencia?</big></b></p>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_si_desaprobar" type="button" class="btn btn-warning btn-block"><b>Sí</b></button>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_no_desaprobar" type="button" class="btn btn-warning btn-block"><b>No</b></button>
+            </div>
+
+            <div id="mensaje-eliminar"></div>
+
+          </div>
+
+        </div>
+
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+      <!-- /.modal -->
+    </div>

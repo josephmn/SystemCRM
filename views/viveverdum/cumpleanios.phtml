@@ -1,0 +1,123 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 style="color:gray"><b>FELIZ CUMPLEAÑOS</b></h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a href="<?php echo BASE_URL ?>viveverdum/">Vive Verdum</a>
+            </li>
+            <li class="breadcrumb-item active">
+              FELIZ CUMPLEAÑOS
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <section class="col-lg-3 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                &nbsp;<strong>REGISTRO DE VACACIONES POR CUMPLEAÑOS</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>DNI / CE:</label>
+                    <div class="input-group mb-3">
+                      <input id="documento" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" placeholder="Documento">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>NOMBRES Y APELLIDOS:</label>
+                    <div class="input-group mb-3">
+                      <input id="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" placeholder="Nombres y Apellidos">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>FECHA:</label>
+                    <div class="input-group mb-3">
+                      <input type="text" id="fecha" class="form-control flatpickr-disabled-range" placeholder="dd/mm/yyyy" />
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button id="btnagregar" type="button" class="btn btn-success btn-block"><b>REGISTRAR VACACIONES</b></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="col-lg-9 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-address-book"></i>
+                &nbsp;<strong>TABLA VACACIONES POR CUMPLEAÑOS</strong>
+              </h3>
+            </div>
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>MES</th>
+                    <th>F.INICIO</th>
+                    <th>F.FIN</th>
+                    <th>DIAS</th>
+                    <th>TIPO</th>
+                    <th>ESTADO</th>
+                    <th>REPORTE</th>
+                    <th>F.REGISTRO</th>
+                    <th>F. APROBACION</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <?php echo $this->tbcumple ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>

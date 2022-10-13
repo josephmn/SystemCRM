@@ -1,0 +1,96 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <section class="col-lg-8 connectedSortable">
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-pen-square"></i>
+                &nbsp;<strong>CARGA DE DOCUMENTOS DEL PERSONAL</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="estado">SELECCIONE DOCUMENTO:</label>
+                    <select id="combodocumento" name="combodocumento" class="form-control">
+                      <option value="0" selected disabled>-- SELECCIONE --</option>
+                      <?php foreach ($this->cbosustento as $de) { ?>
+                        <option value=<?php echo $de['i_id'] ?>><?php echo $de['v_nombre'] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label id="typearchivo">BUSCAR ARCHIVO</label>
+                    <div class="input-group">
+                      <div class="input-group">
+                        <input id="archivo" name="archivo" type="file">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <button type="button" id="btnsubir" name="btnsubir" class="btn btn-success btn-block">
+                      <i class="fas fa-upload"></i>
+                      &nbsp;&nbsp;<b>SUBIR ARCHIVO</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr class="text-center">
+                        <th>CODIGO</th>
+                        <th>DOCUMENTO</th>
+                        <th>ARCHIVO</th>
+                        <th>FECHA / HORA REGISTRO</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php echo $this->tb_legajo ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>

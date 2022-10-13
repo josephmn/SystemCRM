@@ -1,0 +1,135 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper(str_replace("&ntilde;", "Ñ", $menu['v_nombre']));
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-5 connectedSortable">
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-pen-square"></i>
+                                &nbsp;<strong>CAMBIO DE CLAVE</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>CE./ DNI:</label>
+                                        <div class="input-group date" id="documento" data-target-input="nearest">
+                                            <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>NOMBRES Y APELLIDOS:</label>
+                                        <div class="input-group date" id="nombres" data-target-input="nearest">
+                                            <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>NUEVA CLAVE:</label>
+                                        <div class="input-group" data-target-input="nearest">
+                                            <input id="passwd" name="passwd" type="password" class="form-control" placeholder="ingrese nueva clave..." autocomplete="off">
+                                            <div class="input-group-append" data-target="#correo">
+                                                <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>REPETIR CLAVE:</label>
+                                        <div class="input-group" data-target-input="nearest">
+                                            <input id="passwd2" name="passwd2" type="password" class="form-control" placeholder="repita la clave..." autocomplete="off">
+                                            <div class="input-group-append" data-target="#correo">
+                                                <div class="input-group-text"><i class="fa fa-lock"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <p>* Requisitos para cambiar clave segura:</p>
+                                    <b>
+                                        <ul>
+                                            <li>Debe contener números.</li>
+                                            <li>Debe contener mayúsculas y minúsculas.</li>
+                                            <li>Debe tener mas de 8 digitos.</li>
+                                        </ul>
+                                    </b>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <button type="button" id="btn_guardar" class="btn btn-success btn-block">
+                                            <i class="fas fa-save"></i>
+                                            &nbsp;&nbsp;<b>GUARDAR</b></button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="mensaje-guardar"></div>
+
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>

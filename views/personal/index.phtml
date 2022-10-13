@@ -1,0 +1,276 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-id-badge"></i>
+                                &nbsp;<strong>LISTA DE PERSONAL</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+                        <input hidden id="ip" name="ip" type="text" class="form-control">
+
+                        <div class="card-body">
+
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>DNI</th>
+                                        <th>NOMBRES</th>
+                                        <th>APELLIDO PATERNO</th>
+                                        <th>APELLIDO MATERNO</th>
+                                        <th>AREA</th>
+                                        <th>CARGO</th>
+                                        <th>ZONA</th>
+                                        <th>LOCAL</th>
+                                        <th>AREA INDICADOR</th>
+                                        <th>CARGO INDICADOR</th>
+                                        <th>TURNO</th>
+                                        <th>FLEX TIME</th>
+                                        <th>REMOTO</th>
+                                        <th>MARCACION WEB</th>
+                                        <th>PEDIDO WEB</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (isset($this->personal)) { ?>
+                                        <?php foreach ($this->personal as $inc) { ?>
+                                            <tr>
+                                                <td class="text-left"><?php echo $inc['v_dni'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_nombres'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_paterno'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_materno'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_area'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_cargo'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_zona'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_local'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_area_indicador'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_cargo_indicador'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_turno'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_flex'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_remoto'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_marcacion'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_venta'] ?></td>
+                                                <td class='text-center'>
+                                                    <a id='<?php echo $inc['v_dni'] ?>' class='btn btn-warning btn-sm text-black actualizar'><i class='fa fa-edit'></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- MODAL LOCAL EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>ACTUALIZAR PERSONAL</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>DNI:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="dni" type="text" class="form-control">
+                                <div class="input-group-append" data-target="#dni">
+                                    <div class="input-group-text"><i class="fa fa-id-badge"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>NOMBRES:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="nombres" type="text" class="form-control">
+                                <div class="input-group-append" data-target="#nombre">
+                                    <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>APELLIDOS:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="apellidos" name="apellidos" type="text" class="form-control">
+                                <div class="input-group-append" data-target="#apellidos">
+                                    <div class="input-group-text"><i class="fa fa-user"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>ZONA:</label>
+                            <select id="zona" class="form-control">
+                                <?php foreach ($this->zona as $zn) { ?>
+                                    <option value="<?php echo $zn['i_codigo']; ?>"><?php echo $zn['v_descripcion']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>LOCAL:</label>
+                            <select id="local" class="form-control">
+                                <?php foreach ($this->local as $lc) { ?>
+                                    <option value="<?php echo $lc['i_codigo']; ?>"><?php echo $lc['v_descripcion']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>INDICADOR AREA:</label>
+                            <select id="grupoarea" class="form-control">
+                                <?php foreach ($this->grupoarea as $ga) { ?>
+                                    <option value="<?php echo $ga['i_codigo']; ?>"><?php echo $ga['v_descripcion']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>INDICADOR CARGO:</label>
+                            <select id="grupocargo" class="form-control">
+                                <?php foreach ($this->grupocargo as $gc) { ?>
+                                    <option value="<?php echo $gc['i_codigo']; ?>"><?php echo $gc['v_descripcion']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>PERSONAL POR TURNOS:</label>
+                            <select id="turno" class="form-control">
+                                <option value="0" selected>NO</option>
+                                <option value="1">SI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>FLEX TIME:</label>
+                            <select id="flex" class="form-control">
+                                <option value="0" selected>NO</option>
+                                <option value="1">SI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>TRABAJO REMOTO:</label>
+                            <select id="remoto" class="form-control">
+                                <option value="0" selected>NO</option>
+                                <option value="1">SI</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>MARCACION WEB:</label>
+                            <select id="marcacion" class="form-control">
+                                <option value="0" selected>NO</option>
+                                <option value="1">SI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>PEDIDO WEB:</label>
+                            <select id="venta" class="form-control">
+                                <option value="0" selected>NO</option>
+                                <option value="1">SI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button id="btnguardar" type="button" class="btn btn-success btn-block">
+                            <i class="fas fa-save"></i>&nbsp;&nbsp;<b>GUARDAR</b></button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button id="btncancelar" type="button" class="btn btn-danger btn-block">
+                        <i class="fas fa-ban"></i>&nbsp;&nbsp;<b>CANCELAR</b></button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

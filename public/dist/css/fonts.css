@@ -1,0 +1,83 @@
+/* Arial */
+@font-face {
+  font-family: Arialn;
+  src: url(./fonts/arial.ttf);
+}
+
+@font-face {
+  font-family: Arialb;
+  src: url(./fonts/arialb.ttf);
+  font-weight: bold;
+}
+
+/* GOTHIC */
+@font-face {
+  font-family: GOTHIC;
+  src: url(./fonts/GOTHIC.TTF);
+}
+
+@font-face {
+  font-family: GOTHICB;
+  src: url(./fonts/GOTHICB.TTF);
+  /* font-weight: bold; */
+}
+
+/* Comic Sans */
+@font-face {
+  font-family: ComicSans;
+  src: url(./fonts/comic.ttf);
+}
+
+@font-face {
+  font-family: ComicSansb;
+  src: url(./fonts/comicb.ttf);
+  font-weight: bold;
+}
+
+/* Dancing Script */
+@font-face {
+  font-family: DancingScript;
+  src: url(./fonts/DancingScript.ttf);
+}
+
+@font-face {
+  font-family: DancingScriptb;
+  src: url(./fonts/DancingScriptb.ttf);
+  font-weight: bold;
+}
+
+/* Orkney */
+@font-face {
+  font-family: Orkney;
+  src: url(./fonts/orkney.otf);
+}
+
+@font-face {
+  font-family: Orkneyb;
+  src: url(./fonts/orkneyb.otf);
+  font-weight: bold;
+}
+
+/* Segoe Print */
+@font-face {
+  font-family: SegoePrint;
+  src: url(./fonts/segoeprint.ttf);
+}
+
+@font-face {
+  font-family: SegoePrintb;
+  src: url(./fonts/segoeprintb.ttf);
+  font-weight: bold;
+}
+
+/* Times New Roman */
+@font-face {
+  font-family: timesnew;
+  src: url(./fonts/times.ttf);
+}
+
+@font-face {
+  font-family: timesnewb;
+  src: url(./fonts/timesb.ttf);
+  font-weight: bold;
+}

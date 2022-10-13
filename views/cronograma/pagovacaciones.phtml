@@ -1,0 +1,271 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 style="color:gray"><b>CRONOGRAMA DETALLADO</b></h1> -->
+                    <a href="<?php echo BASE_URL ?>cronograma/filtro_meses/&mes=<?php echo $_GET['mes'] ?>&anhio=<?php echo $_GET['anhio'] ?>&nommes=<?php echo $_GET['nommes'] ?>">
+                        <h1 style="color:gray"><i class="fas fa-arrow-circle-left fa-beat-fade"></i>&nbsp;&nbsp;<b>ATRAS - "DIAS DE VACACIONES PROGRAMADAS AL PERSONAL"</b>
+                        </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-money-bill-1-wave fa-flip" style="--fa-animation-duration: 3s;"></i>
+                                &nbsp;<strong>PAGOS ASIGNADOS AL PERIODO</strong>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>AÑO:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vanhio" type="text" class="form-control" value="<?php echo $_GET['anhio'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>MES:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vmes" type="text" class="form-control" value="<?php echo $_GET['mes'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>NOMBRE MES:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vnommes" type="text" class="form-control" value="<?php echo $_GET['nommes'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>FECHA CORTE:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="fcorte" name="fcorte" type="text" class="form-control datetimepicker-input" value="<?php echo $_GET['fecha'] ?>" placeholder="dd/mm/aaaa" autocomplete="off">
+                                            <div class="input-group-append" data-target="#fcorte" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>CARGAR Y PRE-VISUALIZAR:</label>
+                                        <button type="button" id="btncargar" class="btn btn-success btn-block"><b>CARGAR DATOS</b></button>
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card <?php echo $this->stylefila[2] ?>">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-address-book"></i>
+                                &nbsp;<strong>PERSONALES EN FECHA DE PAGO</strong>
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="fas <?php echo $this->stylefila[1] ?>"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="<?php echo $this->stylefila[0] ?>">
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <button type="button" id="btnatiempo" class="btn btn-success btn-block">
+                                            <i class="fas fa-save fa-beat"></i>
+                                            &nbsp;&nbsp;<b>PROCESAR PAGOS</b></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE Y APELLIDOS</th>
+                                        <th>MES</th>
+                                        <th>AÑO</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>TOTAL</th>
+                                        <th>TIPO CRONOGRAMA</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>FECHA CORTE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo $this->pagomes ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card <?php echo $this->stylefila1[2] ?>">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-address-book"></i>
+                                &nbsp;<strong>PERSONALES FUERA DE FECHA DE PAGO</strong>
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="<?php echo $this->stylefila1[1] ?>"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="<?php echo $this->stylefila1[0] ?>">
+
+                            <table id="example2" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE Y APELLIDOS</th>
+                                        <th>MES</th>
+                                        <th>AÑO</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>TOTAL</th>
+                                        <th>TIPO CRONOGRAMA</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>FECHA CORTE</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo $this->pagomespasado ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card <?php echo $this->stylefila2[2] ?>">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-address-book"></i>
+                                &nbsp;<strong>PERSONALES PARA ENVIO DE PAGO</strong>
+                            </h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="<?php echo $this->stylefila2[1] ?>"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body" style="<?php echo $this->stylefila2[0] ?>">
+                            <?php echo $this->btconfirmado ?>
+
+                            <table id="example3" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE Y APELLIDOS</th>
+                                        <th>MES</th>
+                                        <th>AÑO</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>TOTAL</th>
+                                        <th>TIPO CRONOGRAMA</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>FECHA CORTE</th>
+                                        <th>ESTADO ENVIO</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo $this->enviopago ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>

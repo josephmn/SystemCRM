@@ -1,0 +1,303 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <!-- <h1 style="color:gray"><strong>DASHBOARD | RECURSOS HUMANOS</strong></h1> -->
+          <h1 style="color:gray"><b>
+          <?php foreach($_SESSION['menus'] as $menu){?>
+          <?php if($this->_controlador ==$menu['v_link']){echo strtoupper ($menu['v_nombre']);}else{'';}?>
+          <?php } ?></b>
+          </h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+        
+          <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box bg-green">
+                <span class="info-box-icon bg-light elevation-1"><i class="fas fa-users"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Empleados</span>
+                  <span class="info-box-number">
+                    <h3><?php echo $this->data[0]['total_empleados'];?></h3>
+                  </span>
+                </div>
+                <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box bg-green">
+                <span class="info-box-icon bg-light elevation-1"><i class="fas fa-user"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Ingresos</span>
+                  <span class="info-box-number">
+                    <h3><?php echo $this->data[0]['total_ingresos'];?></h3>
+                  </span>
+                </div>
+                <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box bg-green">
+                <span class="info-box-icon bg-light elevation-1"><i class="fas fa-frown"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Cesados</span>
+                  <span class="info-box-number">
+                    <h3><?php echo $this->data[0]['total_cesados'];?></h3>
+                  </span>
+                </div>
+                <a href="#" class="small-box-footer">Mas info <i class="fas fa-arrow-circle-right"></i></a>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3">
+              <div class="info-box bg-green">
+                <span class="info-box-icon bg-light elevation-1"><i class="fas fa-chart-line"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Crecimiento</span>
+                  <span class="info-box-number">
+                    <h3><?php echo $this->data[0]['total_crecimiento'];?></h3>
+                  </span>
+                </div>
+                <!-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+          </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+              <!-- Left col -->
+              <section class="col-lg-6 connectedSortable">
+
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                        <i class="fas fa-chart-area"></i>
+                        &nbsp;<strong>PAGOS POR PERIODOS - ANUALES</strong>
+                      </h3>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                          <!-- <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button> -->
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                      <div class="row">
+                        
+                        <div class="col-md-12">
+                        
+                          <!-- <table class="highchart" data-graph-container-before="1" data-graph-type="column" style="display:none" > -->
+                          <table id= highchart1 class="highchart" data-graph-container-before="1" data-graph-type="line" style="display:none" data-graph-xaxis-end-on-tick="1">
+                              <thead>
+                                  <tr>                                  
+                                      <th>Meses</th>
+                                      <th>Anio 2018</th>
+                                      <th>Anio 2019</th>
+                                      <th>Anio 2020</th>
+                                      <th>Anio 2021</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <?php if(isset($this->filasgrafico1)){?>
+                                    <?php foreach($this->filasgrafico1 as $fi){?>
+                                    <tr>
+                                      <td><?php echo $fi['mes']?></td>
+                                      <td><?php echo $fi['P2018']?></td>
+                                      <td><?php echo $fi['P2019']?></td>
+                                      <td><?php echo $fi['P2020']?></td>
+                                      <td><?php echo $fi['P2021']?></td>
+                                    </tr>
+                                    <?php } ?>
+                                  <?php } ?>
+                              </tbody>
+                          </table>
+                        
+                        </div>
+                  
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    
+                    <!-- /.card-body -->
+                </div>
+
+              </section>
+              <!-- /.Left col -->    
+
+              <!-- Left col -->
+              <section class="col-lg-6 connectedSortable">
+
+                <div class="card">
+                    <div class="card-header">
+                      <h3 class="card-title">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        &nbsp;<strong>PERSONAL POR AREA</strong>
+                      </h3>
+                      <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                          <!-- <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button> -->
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+
+                    <div class="card-body">
+                      <div class="row">
+                        
+                        <div class="col-md-12">
+                        
+                          <table class="highchart" data-graph-container-before="1" data-graph-type="column" style="display:none" data-graph-inverted="1">
+                              <thead>
+                                  <tr>                                  
+                                      <th>AREAS</th>
+                                      <th>Cantidad Personal</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                <?php if(isset($this->filasgrafico2)){?>
+                                  <?php foreach($this->filasgrafico2 as $fi){?>
+                                  <tr>
+                                    <td class="text-center"><?php echo $fi['AREA']?></td>
+                                    <td class="text-center"><?php echo $fi['CANTIDAD']?></td>
+                                  </tr>
+                                  <?php } ?>
+                                <?php } ?>
+                              </tbody>
+                          </table>
+                        
+                        </div>
+                  
+                        <!-- /.col -->
+                      </div>
+                      <!-- /.row -->
+                    </div>
+                    
+                    <!-- /.card-body -->
+                </div>
+
+              </section>
+              <!-- /.Left col -->    
+
+        </div>
+
+        <div class="row">
+
+              <!-- Left col -->   
+              <section class="col-lg-6 connectedSortable">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-chart-pie"></i>
+                          &nbsp;<strong>TABLA DE PAGO ANUALES</strong>
+                        </h3>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                          <!-- <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button> -->
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                          <tr class="text-center">
+                            <th>#</th>
+                            <th>MES</th>
+                            <th>P. 2018</th>
+                            <th>P. 2019</th>
+                            <th>P. 2020</th>
+                            <th>P. 2021</th>
+                          </tr>
+                        </thead>
+                          <tbody>
+                              <?php if(isset($this->filasgrafico1)){?>
+                                <?php foreach($this->filasgrafico1 as $fi){?>
+                                <tr>
+                                  <td class="text-center"><?php echo $fi['numero']?></td>
+                                  <td class="text-center"><?php echo $fi['mes']?></td>
+                                  <td class="text-center"><?php echo number_format($fi['P2018'],2)?></td>
+                                  <td class="text-center"><?php echo number_format($fi['P2019'],2)?></td>
+                                  <td class="text-center"><?php echo number_format($fi['P2020'],2)?></td>
+                                  <td class="text-center"><?php if($fi['P2021']==null){echo number_format('0.00',2);}else{echo number_format($fi['P2021'],2);}?></td>
+                                </tr>
+                                <?php } ?>
+                              <?php } ?>
+                          </tbody>
+                      </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+              </section>
+              <!-- /.Left col -->     
+
+              <!-- Left col -->   
+              <!-- <section class="col-lg-6 connectedSortable">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                          <i class="fas fa-chart-pie"></i>
+                          &nbsp;<strong>PERSONAL GENERO</strong>
+                        </h3>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                          <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="highchart" data-graph-container-before="1" data-graph-type="pie" style="display:none">
+                        <table class="highchart" data-graph-container-before="1" data-graph-type="pie" style="display:none" data-graph-datalabels-enabled="1" data-graph-color-1="#999">
+                            <thead>
+                                <tr>                                  
+                                    <th>Month</th>
+                                    <th>Sales</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>January</td>
+                                    <td>8000</td>
+                                </tr>
+                                <tr>
+                                    <td>February</td>
+                                    <td>12000</td>
+                                </tr>
+                                <tr>
+                                    <td>March</td>
+                                    <td>18000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+              </section> -->
+              <!-- /.Left col -->     
+        </div>
+    </section> 
+
+  </div>

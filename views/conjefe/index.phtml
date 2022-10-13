@@ -1,0 +1,80 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-tie"></i>
+                                &nbsp;<strong>PERSONAL A CARGO</strong>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-md-12 col-12">
+                                <table id="example1" class="table table-bordered">
+                                    <thead class="thead-light">
+                                        <tr class="text-center">
+                                            <th>DNI</th>
+                                            <th>Nombre</th>
+                                            <th>Cargo</th>
+                                            <th># personal</th>
+                                            <th>#</th>
+                                            <!-- <th>#</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (isset($this->jefes)) { ?>
+                                            <?php foreach ($this->jefes as $tr) { ?>
+                                                <tr>
+                                                    <td class="text-center"><?php echo $tr['v_dni_jefe'] ?></td>
+                                                    <td class="text-left"><?php echo $tr['v_nombre'] ?></td>
+                                                    <td class="text-center"><span class="badge bg-warning"><?php echo $tr['v_cargo'] ?></span></td>
+                                                    <td class="text-center"><?php echo $tr['i_personal'] ?></td>
+                                                    <td class='text-center'>
+                                                        <a href="<?php echo BASE_URL ?>conjefe/asignarasistente/&dnijefe=<?php echo $tr['v_dni_jefe'] ?>&nombrejefe=<?php echo $tr['v_nombre'] ?>" class="btn btn-kimbo btn-sm editar" style="color:white">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>

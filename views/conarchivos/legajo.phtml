@@ -1,0 +1,298 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <a href="<?php echo BASE_URL ?>conarchivos">
+                        <h1 style="color:gray"><i class="fas fa-arrow-circle-left fa-beat-fade"></i>&nbsp;&nbsp;<b>ATRAS</b>
+                        </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-folder-tree"></i>
+                                &nbsp;<strong>CONFIGURACION LEGAJO DE DOCUMENTOS</strong>
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <button id="btn-agregar" type="button" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;<b>AGREGAR</b></button>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>ID</th>
+                                                <th>NOMBRE</th>
+                                                <th>CARPETA</th>
+                                                <th>MODULO</th>
+                                                <th>ESTADO</th>
+                                                <th>TIPO ARCHIVO</th>
+                                                <th># ARCHIVOS DE CARGA</th>
+                                                <th>TAMAÑO (Mb)</th>
+                                                <th>F. MODIFICACION</th>
+                                                <th>#</th>
+                                                <!-- <th>#</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php echo $this->tb_legajo ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- MODAL AGREGAR ARCHIVO-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>REGISTRAR ARCHIVO</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>NOMBRE ARCHIVO:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="nombre-archivo" type="text" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>CARPETA:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="carpeta-archivo" type="text" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>MODULO:</label>
+                            <select id="modulo-archivo" class="form-control">
+                                <option value="legajo documentos" selected>LEGAJO DOCUMENTO</option>
+                                <option value="denuncia">DENUNCIA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>ESTADO:</label>
+                            <select id="estado-archivo" class="form-control">
+                                <option value="0">INACTIVO</option>
+                                <option value="1" selected>ACTIVO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label># ARCHIVOS DE CARGA:</label>
+                            <select id="cantidad-archivo" class="form-control">
+                                <option value="0" selected>UNICO</option>
+                                <option value="1">MAS DE UNO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>TIPO DE ARCHIVOS:</label>
+                            <div class="select2-success">
+                                <select id="file-archivo" class="select2" multiple="multiple" data-placeholder="Seleccione archivo(s).." data-dropdown-css-class="select2-success" style="width: 100%;">
+                                    <?php echo $this->filascombo ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>TAMAÑO (Mb):</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="tamanio-archivo" type="number" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btn-registrar" type="button" class="btn btn-success btn-block"><b>REGISTRAR</b></button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button id="btn-cancelar-agregar" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL EDITAR ARCHIVO-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center"><b>ACTUALIZAR LEGAJO</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>ID:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="id-archivo-actualizar" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>NOMBRE ARCHIVO:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="nombre-archivo-actualizar" type="text" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>CARPETA:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="carpeta-archivo-actualizar" type="text" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>MODULO:</label>
+                            <select id="modulo-archivo-actualizar" class="form-control">
+                                <option value="legajo documentos" selected>LEGAJO DOCUMENTO</option>
+                                <option value="denuncia">DENUNCIA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>ESTADO:</label>
+                            <select id="estado-archivo-actualizar" class="form-control">
+                                <option value="0">INACTIVO</option>
+                                <option value="1" selected>ACTIVO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label># ARCHIVOS DE CARGA:</label>
+                            <select id="cantidad-archivo-actualizar" class="form-control">
+                                <option value="0" selected>UNICO</option>
+                                <option value="1">MAS DE UNO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>TIPO DE ARCHIVOS:</label>
+                            <div class="select2-success">
+                                <select id="file-archivo-actualizar" class="select2" multiple="multiple" data-placeholder="Seleccione archivo(s).." data-dropdown-css-class="select2-success" style="width: 100%;">
+                                    <?php echo $this->filascombo ?>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>TAMAÑO (Mb):</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="tamanio-archivo-actualizar" type="number" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btn-actualizar" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button id="btn-cancelar-actualizar" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

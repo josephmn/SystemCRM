@@ -1,0 +1,267 @@
+    <!-- BEGIN: Content-->
+    <div class="app-content content ">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-left mb-0">
+                                <b><?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                                        <?php if ($this->_controlador == $menu['v_link']) {
+                                            echo $menu['v_descripcion'];
+                                        } else {
+                                            '';
+                                        } ?>
+                                    <?php } ?>
+                                </b>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <section class="col-lg-12">
+                    <!-- <div class="card col-12">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 col-12">
+                                    <button id="btnperfil" type="button" class="btn btn-success btn-block font-weight-bolder" style="color: White;">
+                                        <i class="fas fa-user-plus"></i><span>&nbsp;&nbsp;Crear Perfil</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <table id="example1" class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr class="text-center">
+                                                <th># Código</th>
+                                                <th>Nombre</th>
+                                                <th>Apellidos</th>
+                                                <th>Correo</th>
+                                                <th>Estado</th>
+                                                <th>Perfil</th>
+                                                <th>Confirmado</th>
+                                                <th>Clave confirmación</th>
+                                                <th># Editar</th>
+                                                <th># Correo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (isset($this->usuarios)) { ?>
+                                                <?php foreach ($this->usuarios as $tr) { ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $tr['v_codigo'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_nombres'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_apellidos'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_correo'] ?></td>
+                                                        <td class="text-center"><span class="badge bg-<?php echo $tr['v_color_estado'] ?>"><?php echo $tr['v_estado'] ?></span></td>
+                                                        <td class="text-center"><span class="badge bg-primary"><?php echo $tr['v_perfil'] ?></span></td>
+                                                        <td class="text-center"><span class="badge bg-<?php echo $tr['v_color_confirmar_estado'] ?>"><?php echo $tr['v_confirmar_estado'] ?></span></td>
+                                                        <td class="text-left"><?php echo $tr['i_clave_confirmacion'] ?></td>
+                                                        <td class='text-center'>
+                                                            <a id="<?php echo $tr['v_codigo'] ?>" class="btn btn-warning btn-sm editar" style="color:white">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td class='text-center'>
+                                                            <a id="<?php echo $tr['v_codigo'] ?>" class="btn btn-secondary btn-sm correo" style="color:white">
+                                                                <i class="fas fa-envelope"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- MODAL EDITAR PERFIL-->
+    <div class="modal fade" id="modal-editar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ACTUALIZAR PERFIL:&nbsp;</h5><b><span id="idtabla"></span></b>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <section class="col-lg-3">
+                            <div class="media">
+                                <a class="mr-25">
+                                    <img id="foto" src="" class="rounded mr-50" alt="profile image" height="200" width="200" />
+                                </a>
+                            </div>
+                        </section>
+                        <section class="col-lg-9">
+                            <div class="form-group col-md-12">
+                                <label class="form-label font-weight-bolder">Códgo perfil:</label>
+                                <input type="text" id="codigo" tabindex="1" class="form-control" autocomplete="off" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="form-label font-weight-bolder">Nombres:</label>
+                                <input type="text" id="nombres" tabindex="1" class="form-control" autocomplete="off" />
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="form-label font-weight-bolder">Apellidos:</label>
+                                <input type="text" id="apellidos" tabindex="2" class="form-control" autocomplete="off" />
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Correo:</label>
+                            <input type="email" id="correo" tabindex="3" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Estado:</label>
+                            <select id="estado" tabindex="4" class="form-control form-control-md">
+                                <option value="0">Inactivo</option>
+                                <option value="1">Activo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Perfil:</label>
+                            <select id="perfil" tabindex="5" class="select2 form-control form-control-md">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Confirmación:</label>
+                            <select id="confirmar" tabindex="6" class="form-control form-control-md">
+                                <option value="0">No Confirmado</option>
+                                <option value="1">Confirmado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Clave confirmación:</label>
+                            <input type="text" id="clavecon" tabindex="7" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Clave confirmación:</label>
+                            <input type="text" id="clave" tabindex="6" class="form-control" autocomplete="off" />
+                        </div>
+                    </div> -->
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button id="btnguardar" type="button" class="btn btn-success btn-block">
+                                    <i class="fas fa-save"></i>
+                                    <b>Guardar</b></button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-sm-6">
+                                <button id="btncancelar" type="button" class="btn btn-danger btn-block">
+                                    <i class="fas fa-ban"></i>
+                                    <b>Cancelar</b></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL ENVIAR CORREO-->
+    <div class="modal fade" id="modal-correo" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ENVIAR CORREO:&nbsp;</h5><b><span id="postnombre"></span></b>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id='div-00' class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Para:</label>
+                            <input type="text" id="postpara" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label>CC:</label>
+                            <select id="postcc" class="select2 form-control jscorreocc" multiple>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Asunto:</label>
+                            <input type="text" id="postasunto" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Mensaje:</label>
+                            <textarea id="mensaje" data-length="1200" maxlength="1200" class="form-control char-textarea-mision" rows="5" autocomplete="off" placeholder="escribir breve mensaje..."></textarea>
+                            <small class="textarea-counter-value float-right"><span class="char-count-mision">0</span></span> / 1200 </small>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button id="btnenviarcorreo" type="button" class="btn btn-success btn-block">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <b>Enviar</b>
+                                </button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-sm-6">
+                                <button id="btncancelarcorreo" type="button" class="btn btn-danger btn-block">
+                                    <i class="fas fa-ban"></i>
+                                    <b>Cancelar</b></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

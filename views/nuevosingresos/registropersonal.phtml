@@ -1,0 +1,1117 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>REGISTRO DE NUEVO PERSONAL</b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+
+    <div class="container-fluid">
+
+      <div class="row">
+        <form>
+          <!-- DATOS PERSONALES -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>DATOS PERSONALES</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>ESTADO</label>
+                      <div class="input-group">
+                        <input id="estado" type="text" class="form-control" value="ACTIVO" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i style="color:forestgreen" class="fas fa-circle"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>TIPO DOCUMENTO</label>
+                      <div class="input-group">
+                        <select class="form-control" id="tipodocumento">
+                          <?php echo $this->combotipodoc ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>DNI / CE.</label>
+                      <div class="input-group">
+                        <input id="dni" type="text" class="form-control" value="<?php echo $this->personal[0]['v_dni'] ?>" onkeypress='return solonumero(event)' autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-id-card"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>APELLIDO PATERNO</label>
+                      <div class="input-group">
+                        <!--style="text-transform:uppercase;" onkeyup="javascript:this.value=this.value.toUpperCase();"-->
+                        <input id="paterno" type="text" class="form-control" style="text-transform:uppercase;" value="<?php echo $this->personal[0]['v_paterno'] ?>" onkeypress='return sololetras(event)' autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>APELLIDO MATERNO</label>
+                      <div class="input-group">
+                        <input id="materno" type="text" class="form-control" style="text-transform:uppercase;" value="<?php echo $this->personal[0]['v_materno'] ?>" onkeypress='return sololetras(event)' autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>NOMBRES</label>
+                      <div class="input-group">
+                        <input id="nombres" type="text" class="form-control" style="text-transform:uppercase;" value="<?php echo $this->personal[0]['v_nombre'] ?>" onkeypress='return sololetras(event)' autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>SEXO</label>
+                      <div class="input-group">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-venus-mars"></i></div>
+                        </div>
+                        <select class="form-control" id="sexo">
+                          <option value="1" <?php if ($this->personal[0]['v_sexo'] == 1) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>MASCULINO</option>
+                          <option value="2" <?php if ($this->personal[0]['v_sexo'] == 2) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>FEMENINO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>FECHA NACIMIENTO</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <input id="fnacimiento" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask value="<?php echo $this->personal[0]['d_fnacimiento'] ?>">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>ESTADO CIVIL</label>
+                      <select class="form-control" id="civil" name="civil">
+                        <?php echo $this->combocivil ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>NUMERO DE HIJOS</label>
+                      <div class="input-group" data-target-input="nearest">
+                        <input id="hijos" type="number" min="0" max="10" class="form-control" value="<?php echo $this->personal[0]['i_hijos'] ?>" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-child"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>PAIS</label>
+                      <div class="input-group date" data-target-input="nearest">
+                        <select id="pais" class="form-control select2bs4">
+                          <?php echo $this->combopais ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>DEPARTAMENTO</label>
+                      <select id="departamento" class="form-control select2bs4">
+                        <?php echo $this->combodepartamento ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>PROVINCIA</label>
+                      <select id="provincia" class="form-control select2bs4">
+                        <?php echo $this->comboprovincia ?>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>DISTRITO</label>
+                      <select id="distrito" class="form-control select2bs4">
+                        <?php echo $this->combodistrito ?>
+                      </select>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label>DIRECCION</label>
+                      <div class="input-group">
+                        <input id="domicilio_actual" name="domicilio_actual" type="text" class="form-control" style="text-transform:uppercase;" placeholder="DIRECCIÓN..." value="<?php echo $this->personal[0]['v_domicilio'] ?>" autocomplete="off">
+                        <div class="input-group-append" data-target="#domicilio_actual">
+                          <div class="input-group-text"><i class="fa fa-map-marked-alt"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>N° CELULAR</label>
+                      <div class="input-group">
+                        <input id="celular" name="celular" type="text" class="form-control" onkeypress='return solonumero(event)' placeholder="(999888777)" value="<?php echo $this->personal[0]['v_celular'] ?>" autocomplete="off">
+                        <div class="input-group-append" data-target="#correo">
+                          <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>CORREO PERSONAL</label>
+                      <div class="input-group">
+                        <input id="correo" name="correo" type="email" class="form-control" aria-describedby="emailHelp" placeholder="tucorreo@dominio.xx..." value="<?php echo $this->personal[0]['v_correo'] ?>" autocomplete="off">
+                        <div class="input-group-append" data-target="#correo">
+                          <div class="input-group-text"><i class="fa fa-at"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- SEGURO Y ESSALUD -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>SEGURO Y ESSALUD</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>TIENE SEGURO</label>
+                      <div class="input-group">
+                        <select id="tieneseguro" class="form-control">
+                          <option value="0" <?php if ($this->personal[0]['i_essalud'] == 0) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>NO</option>
+                          <option value="1" <?php if ($this->personal[0]['i_essalud'] == 1) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>CODIGO ESSALUD</label>
+                      <div class="input-group">
+                        <input id="codessalud" type="text" <?php if ($this->personal[0]['i_essalud'] == 1) {
+                                                              echo '';
+                                                            } else {
+                                                              echo 'disabled';
+                                                            } ?> class="form-control" style="text-transform:uppercase;" value="<?php echo $this->personal[0]['v_essalud'] ?>" autocomplete="off">
+                        <!--9211011MANAJ009-->
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-hospital"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>DOMICILIADO</label>
+                      <div class="input-group">
+                        <select id="domiciliado" class="form-control">
+                          <option value="1" <?php if ($this->personal[0]['i_domiciliado'] == 1) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>SI</option>
+                          <option value="2" <?php if ($this->personal[0]['i_domiciliado'] == 2) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>NO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>AFP</label>
+                      <div class="input-group">
+                        <select id="afp" class="form-control">
+                          <?php echo $this->comboafp ?>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>COMISION AFP</label>
+                      <div class="input-group">
+                        <select id="comfluapf" <?php if ($this->personal[0]['v_afp'] != "SNP") {
+                                                  echo '';
+                                                } else {
+                                                  echo 'disabled';
+                                                } ?> class="form-control">
+                          <option value="0" selected>-- SELECCIONE --</option>
+                          <option value="F" <?php if ($this->personal[0]['v_comfluapf'] == 'F') {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>FLUJO</option>
+                          <option value="S" <?php if ($this->personal[0]['v_comfluapf'] == 'S') {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>SALDO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>CODIGO AFP</label>
+                      <div class="input-group">
+                        <input id="codafp" type="text" <?php if ($this->personal[0]['v_afp'] != "SNP") {
+                                                          echo '';
+                                                        } else {
+                                                          echo 'disabled';
+                                                        } ?> class="form-control" style="text-transform:uppercase;" value="<?php echo $this->personal[0]['v_codafp'] ?>" autocomplete="off">
+                        <!--639071JMNAA9-->
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user-shield"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- RTPS -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>RTPS</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label>TIPO TRABAJADOR</label>
+                      <div class="input-group">
+                        <select id="tipotrabajador" class="form-control select2bs4">
+                          <?php echo $this->combotipotrabajador ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>REGIMEN</label>
+                      <div class="input-group">
+                        <select id="regimen" class="form-control">
+                          <option value="1" selected>PRIVADO</option>
+                          <option value="2">PÚBLICO</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label>NIVEL DE EDUCACION</label>
+                      <div class="input-group">
+                        <select id="niveleducacion" class="form-control select2bs4">
+                          <?php echo $this->combonivelD ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label>OCUPACION</label>
+                      <div class="input-group">
+                        <select id="ocupacion" class="form-control select2bs4">
+                          <?php echo $this->comboocupacion ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>DISCAPACIDAD</label>
+                      <div class="input-group">
+                        <select id="discapacidad" class="form-control">
+                          <option value="0" <?php if ($this->personal[0]['i_discapacidad'] == 0) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>NO</option>
+                          <option value="1" <?php if ($this->personal[0]['i_discapacidad'] == 1) {
+                                              echo "selected";
+                                            } else {
+                                              echo '';
+                                            } ?>>SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label>TIPO DE CONTRATO</label>
+                      <div class="input-group date">
+                        <select id="tipocontrato" class="form-control select2bs4">
+                          <?php echo $this->combotipocontrato ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>JORNADA MÁXIMA</label>
+                      <div class="input-group date">
+                        <select id="jornadamax" class="form-control">
+                          <option value="0" selected>NO</option>
+                          <option value="1">SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>OTROS INGRESOS DE 5TA</label>
+                      <div class="input-group date">
+                        <select id="otro5ta" class="form-control">
+                          <option value="0" selected>NO</option>
+                          <option value="1">SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>AFILIADO EPS</label>
+                      <div class="input-group date">
+                        <select id="afiliadoeps" class="form-control">
+                          <option value="0" selected>NO</option>
+                          <option value="1">SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CODIGO EPS</label>
+                      <div class="input-group date">
+                        <input id="codigoeps" type="text" class="form-control" style="text-transform:uppercase;" autocomplete="off">
+                        <!--123456789AHJ-->
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user-shield"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>TIPO EPS</label>
+                    <div class="input-group date">
+                      <select id="tipoeps" class="form-control">
+                        <option value="0" selected>NO</option>
+                        <option value="1">SI</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> -->
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>EXONERADO 5TA</label>
+                      <div class="input-group date">
+                        <select id="exoquinta" class="form-control">
+                          <option value="0" selected>NO</option>
+                          <option value="1">SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>TIPO DE PAGO</label>
+                      <div class="input-group date">
+                        <select id="tipopago" class="form-control">
+                          <?php echo $this->combotipopago ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- CONTABILIDAD -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>CONTABILIDAD</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CENTRO DE COSTOS</label>
+                      <div class="input-group date">
+                        <select id="centrocosto" class="form-control select2bs4">
+                          <?php echo $this->combocentrocosto ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CUENTA NETO</label>
+                      <div class="input-group date">
+                        <select id="cuentaneto" class="form-control select2bs4">
+                          <?php echo $this->combocuenta ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CUENTA COSTO</label>
+                      <div class="input-group date">
+                        <select id="cuentacosto" class="form-control select2bs4">
+                          <?php echo $this->combocuenta ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- DATOS EMPLEADO -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>DATOS EMPLEADO</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>EMPRESA</label>
+                      <div class="input-group date">
+                        <select id="empresa" class="form-control">
+                          <?php echo $this->comboempresa ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>FECHA INGRESO</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <input id="fingreso" type="text" class="form-control datetimepicker-input" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>FECHA SALIDA</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="fsalida" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    </div>
+                  </div>
+                </div> -->
+
+                  <!-- <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>FECHA REGISTRO SALIDA</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="frsalida" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    </div>
+                  </div>
+                </div> -->
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>LOCAL TRABAJO</label>
+                      <div class="input-group date">
+                        <select id="local" class="form-control">
+                          <?php echo $this->combolocaltrabajo ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>INICIO CONTRATO</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="icontrato" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>FIN CONTRATO</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                      </div>
+                      <input id="fcontrato" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                    </div>
+                  </div>
+                </div> -->
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>PUESTO DE CONFIANZA</label>
+                      <div class="input-group date">
+                        <select id="puestoconfianza" class="form-control">
+                          <option value="0" selected>NO</option>
+                          <option value="1">SI</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>AREA</label>
+                      <div class="input-group date">
+                        <select id="area" class="form-control select2bs4">
+                          <?php echo $this->comboarea ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>SUBAREA</label>
+                      <div class="input-group date">
+                        <select id="subarea" class="form-control">
+                          <?php echo $this->combosubarea ?>
+                        </select>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CARGO</label>
+                      <div class="input-group date">
+                        <select id="cargo" class="form-control select2bs4">
+                          <?php echo $this->combocargo ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>CODIGO VENDEDOR</label>
+                    <div class="input-group date">
+                      <input id="codvendedor" type="text" class="form-control" value="000001" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user-shield"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+                </div>
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>N° CELULAR (EMPRESA)</label>
+                      <div class="input-group">
+                        <input id="celularempresa" name="celular" type="text" class="form-control" onkeypress='return solonumero(event)' placeholder="(999888777)" autocomplete="off">
+                        <div class="input-group-append" data-target="#correo">
+                          <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label>CORREO (EMPRESA)</label>
+                      <div class="input-group">
+                        <input id="correoempresa" name="correoempresa" type="email" class="form-control" aria-describedby="emailHelp" placeholder="tucorreo@dominio.xx..." autocomplete="off">
+                        <div class="input-group-append" data-target="#correoempresa">
+                          <div class="input-group-text"><i class="fa fa-at"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- REMUNERACION -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>REMUNERACIÓN</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>MODO PAGO</label>
+                      <div class="input-group date">
+                        <select id="modopago" class="form-control">
+                          <option value="ME" selected>MENSUAL</option>
+                          <option value="SE">SEMANAL</option>
+                          <option value="DI">DIARIO</option>
+                          <option value="HO">HORA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>TIPO REMUNERACIÓN</label>
+                      <div class="input-group date">
+                        <select id="tiporemunaracion" class="form-control">
+                          <option value="-" selected>-- SELECCION --</option>
+                          <option value="0">VARIABLE</option>
+                          <option value="1">FIJA</option>
+                          <option value="2">RIA</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>TIPO JORNADA</label>
+                      <div class="input-group date">
+                        <select id="tipojornada" class="form-control">
+                          <option value="FULL" selected>FULL</option>
+                          <option value="PART">PART TIME</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>SUELDO BRUTO</label>
+                      <div class="input-group">
+                        <input id="sbruto" type="number" min="0" step='0.01' class="form-control" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-money-bill"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>MOVILIDAD SUPEDITADA</label>
+                      <div class="input-group">
+                        <input id="movsupeditada" type="number" min="0" step='0.01' class="form-control" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-money-bill"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label>MOVILIDAD COMERCIAL</label>
+                      <div class="input-group">
+                        <input id="movcomercial" type="number" min="0" step='0.01' class="form-control" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-money-bill"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- BANCOS -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>BANCOS</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>BANCO (SUELDO)</label>
+                      <div class="input-group">
+                        <select id="bancosueldo" class="form-control">
+                          <?php echo $this->comboentidadfinanciera ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CUENTA SUELDO</label>
+                      <div class="input-group">
+                        <input id="cuentasueldo" type="text" class="form-control" onkeypress='return paracuentas(event)' autocomplete="off">
+                        <!--0011-0387-02-00319619-->
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-credit-card"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>BANCO (CTS)</label>
+                      <div class="input-group">
+                        <select id="bancocts" class="form-control">
+                          <?php echo $this->comboentidadfinanciera ?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>CUENTA CTS</label>
+                      <div class="input-group">
+                        <input id="cuentacts" type="text" class="form-control" onkeypress='return paracuentas(event)' autocomplete="off">
+                        <!--19148109200014-->
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-credit-card"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- CARTA OFERTA -->
+          <section class="col-lg-12 connectedSortable">
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-pen-square"></i>
+                  &nbsp;<strong>CARTA OFERTA</strong>
+                </h3>
+                <div class="card-tools">
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="row">
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>SUELDO PERCIBIDO</label>
+                      <div class="input-group">
+                        <input id="sueldopercibido" type="number" min="0" step='0.01' class="form-control" autocomplete="off" placeholder="Ejm: 5000.10">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-money-bill-wave"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>PERIODO AFECTO</label>
+                      <div class="input-group">
+                        <input id="periodosueldo" type="text" class="form-control" onkeypress='return solonumero(event)' value="" autocomplete="off" placeholder="Ejm: 202101">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>RENTA DE 5TA EXTERNA</label>
+                      <div class="input-group">
+                        <input id="qtaexterna" type="number" min="0" step='0.01' class="form-control" autocomplete="off" placeholder="Ejm: 5000.01">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-money-bill-wave"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label>PERIODO AFECTO</label>
+                      <div class="input-group">
+                        <input id="periodoqta" type="text" class="form-control" onkeypress='return solonumero(event)' value="" autocomplete="off" placeholder="Ejm: 202101">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-calendar-check"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- BOTON DE GUARDAR -->
+          <section class="col-lg-12 connectedSortable">
+
+            <div class="card card-gray">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button type="button" id="btn_guardar" class="btn btn-success btn-block">
+                        <i class="fas fa-save"></i>
+                        &nbsp;&nbsp;<b>REGISTRAR</b></button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+        </form>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+</div>
+
+</div>
+</section>
+
+</div>

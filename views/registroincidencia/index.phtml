@@ -1,0 +1,291 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+            <?php foreach ($_SESSION['menus'] as $menu) { ?>
+              <?php if ($this->_controlador == $menu['v_link']) {
+                echo strtoupper($menu['v_nombre']);
+              } else {
+                '';
+              } ?>
+            <?php } ?></b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+
+      <!-- Main row -->
+      <!-- Left col -->
+      <section class="col-lg-12 connectedSortable">
+
+        <div class="card card-gray">
+          <div class="card-header">
+            <h3 class="card-title">
+              <i class="fas fa-pen-square"></i>
+              &nbsp;<strong>REGISTRO DE INCIDENCIA</strong>
+            </h3>
+            <div class="card-tools">
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- <h3 class="card-title">DataTable with default features</h3> -->
+            <form action="<?php echo BASE_URL ?>registroincidencia/cargar_table" method="post">
+              <div class="row">
+                <div class="col-sm-4">
+                  <!-- text input finicio-->
+                  <div class="form-group">
+                    <label>Documento:</label>
+                    <div class="input-group date" id="documento" data-target-input="nearest">
+                      <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <!-- text input finicio-->
+                  <div class="form-group">
+                    <label>Nombres completos:</label>
+                    <div class="input-group date" id="nombres" data-target-input="nearest">
+                      <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <!-- text input finicio-->
+                  <div class="form-group">
+                    <label>Fecha inicio:</label>
+                    <div class="input-group date" id="finicio" data-target-input="nearest">
+                      <input id="finiciodate" name="finiciodate" type="text" class="form-control datetimepicker-input" data-target="#finicio" placeholder="dd/mm/aaaa">
+                      <div class="input-group-append" data-target="#finicio" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <!-- text input ffin-->
+                  <div class="form-group">
+                    <label>Fecha fin:</label>
+                    <div class="input-group date" id="ffin" data-target-input="nearest">
+                      <input id="ffindate" name="ffindate" type="text" class="form-control datetimepicker-input" data-target="#ffin" placeholder="dd/mm/aaaa">
+                      <div class="input-group-append" data-target="#ffin" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="submit" id="btn_filtrar" class="btn btn-success btn-block"><b>Filtrar</b></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example1" class="table table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>CODIGO</th>
+                  <th>DNI</th>
+                  <th>DIA</th>
+                  <th>FECHA</th>
+                  <th>ENTRADA</th>
+                  <th>INI_REF</th>
+                  <th>TER_REF</th>
+                  <th>SALIDA</th>
+                  <th>COMENTARIO</th>
+                  <th>ASISTENCIA</th>
+                  <th>REFRIGERIO</th>
+                  <th>#</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (isset($this->filas)) { ?>
+                  <?php foreach ($this->filas as $fi) { ?>
+                    <tr>
+                      <td class="text-center"><?php echo $fi['CODIGO'] ?></td>
+                      <td class="text-center"><?php echo $fi['DNI'] ?></td>
+                      <td class="text-center"><?php echo $fi['DIA'] ?></td>
+                      <td class="text-center"><?php echo $fi['FECHA'] ?></td> <!-- <td><?php //echo date('d/m/Y',strtotime($fi['FECHA']))?></td> -->
+                      <td class="text-center"><?php echo $fi['ENTRADA'] ?></td>
+                      <td class="text-center"><?php echo $fi['INI_REF'] ?></td>
+                      <td class="text-center"><?php echo $fi['TER_REF'] ?></td>
+                      <td class="text-center"><?php echo $fi['SALIDA'] ?></td>
+                      <td><?php echo $fi['COMENTARIO'] ?></td>
+                      <td class="text-center"><span class="badge bg-<?php echo $fi['ASISTENCIA_COLOR'] ?>"><?php echo $fi['ASISTENCIA'] ?></span></td>
+                      <td class="text-center"><span class="badge bg-<?php echo $fi['REFRIGERIO_COLOR'] ?>"><?php echo $fi['REFRIGERIO'] ?></span></td>
+                      <td class='text-center'>
+                        <a style='display: <?php echo $fi['STYLE'] ?>' id='<?php echo $fi['CODIGO'] ?>' class='btn btn-warning btn-sm text-black edit'><i class='fa fa-plus'></i></a>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+
+          <!-- SEGUNDA TABLA -->
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-striped">
+              <thead>
+                <tr class="text-center">
+                  <th>CODIGO</th>
+                  <th>DNI</th>
+                  <th>TIPO SUSTENTO</th>
+                  <th>FECHA INCIDENCIA</th>
+                  <th>FECHA REGISTRO</th>
+                  <th>FECHA PROCESO</th>
+                  <th>COMENTARIO</th>
+                  <th>DIFERENCIA HORA</th>
+                  <th>ESTADO</th>
+                  <th>#</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (isset($this->incidencias)) { ?>
+                  <?php foreach ($this->incidencias as $inc) { ?>
+                    <tr>
+                      <td class="text-center"><?php echo $inc['v_cod_asistencia'] ?></td>
+                      <td class="text-center"><?php echo $inc['v_dni'] ?></td>
+                      <td class="text-center"><?php echo $inc['v_tipo_sustento'] ?></td> <!-- <td><?php //echo date('d/m/Y',strtotime($fi['FECHA']))
+                                                                                                  ?></td> -->
+                      <td class="text-center"><?php echo $inc['d_fecha_incidencia'] ?></td>
+                      <td class="text-center"><?php echo $inc['d_fecha_registro'] ?></td>
+                      <td class='text-center'>
+                        <a style='display: <?php echo $inc['v_style_fechaproceso'] ?>' class="text-center"><?php echo $inc['d_fecha_proceso'] ?></a>
+                      </td>
+                      <td><?php echo $inc['v_comentario'] ?></td>
+                      <td class="text-center"><?php echo $inc['v_diferencia_hora'] ?></td>
+                      <td class="text-center"><span class="badge bg-<?php echo $inc['v_estado_color'] ?>"><?php echo $inc['v_estado'] ?></span></td>
+                      <td class='text-center'>
+                        <a style='display: <?php if ($inc['v_estado'] == "procesado" || $inc['v_estado'] == "rechazado") {
+                                              echo "none";
+                                            } else {
+                                              echo 'compact';
+                                            } ?>' id='<?php echo $inc['v_cod_asistencia'] ?>' class='btn btn-danger btn-sm text-white delete'><i class='fa fa-trash-alt'></i></a>
+                      </td>
+                    </tr>
+                  <?php } ?>
+                <?php } ?>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+
+        </div>
+
+      </section>
+      <!-- /.Left col -->
+    </div>
+  </section>
+
+</div>
+
+    <!-- MODAL DETALLE INSERT-->
+    <div class="modal fade" id="modal-incidencia">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">CODIGO ASISTENCIA: <strong><span id="cod"></span><strong></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="estado">Tipo sustento:</label>
+              <select id="estado" class="form-control">
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="fecha_incidencia">Fecha:</label>
+              <input id="fecha_incidencia" class="form-control hora" type="text">
+            </div>
+
+            <div class="form-group">
+              <!-- <label>Text Disabled</label>
+                    <input type="text" class="form-control" placeholder="Ingrese comentario..." disabled> -->
+              <label>Comentario</label>
+              <textarea id="comentario" style="text-transform:uppercase" class="form-control" rows="3" placeholder="Ingrese comentario ..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="diferencia_hora">Diferencia de horas:</label>
+              <input id="diferencia_hora" class="form-control" type="text">
+            </div>
+
+            <div class="form-group">
+              <button id="btn_registrar" type="button" class="btn btn-primary btn-block">Registrar</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            <div id="mensaje"></div>
+          </div>
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+      <!-- /.modal -->
+    </div>
+
+    <!-- MODAL DETALLE DELETE-->
+    <div class="modal fade" id="modal-eliminar">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">CODIGO INCIDENCIA: <b><span id="codincidencia"></span></b></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group" align="center">
+              <p><big>¿Esta seguro que desea eliminar el registro?</big></p>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_si" type="button" class="btn btn-primary btn-block">Sí</button>
+            </div>
+
+            <div class="form-group">
+              <button id="btn_no" type="button" class="btn btn-primary btn-block">No</button>
+            </div>
+
+            <div id="mensaje-eliminar"></div>
+
+          </div>
+
+        </div>
+
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+      <!-- /.modal -->
+    </div>

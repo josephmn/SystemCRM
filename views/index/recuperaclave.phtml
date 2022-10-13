@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon verdum" href="<?php echo BASE_URL ?>public/dist/img/favicon.png" />
+  <title>SEGUIMIENTO | Recuperar Clave</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?php echo BASE_URL ?>public/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo BASE_URL ?>public/dist/css/adminlte.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition login-page" background="<?php echo BASE_URL ?>public/dist/img/fondo.jpg">
+  <div class="login-box">
+    <div class="login-logo">
+      <a style="color:white"><b>RECUPERAR CLAVE</b></a>
+    </div>
+    <div class="card">
+      <div class="card-body login-card-body">
+        <p class="login-box-msg">Favor ingrese su correo electrónico registrado en el sistema para recuperar la clave.</p>
+
+        <form role="form">
+          <div class="input-group mb-3">
+            <input id="correo" type="email" class="form-control" placeholder="Ingrese correo" tabindex="1" autocomplete="off">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button id="enviarclave" type="button" class="btn btn-success btn-block"><b>Enviar correo</b></button>
+            </div>
+          </div>
+        </form>
+
+        <p class="text-center mt-2">
+          <span>Ya tienes una cuenta?</span>
+          <a href="<?php echo BASE_URL ?>index/index">Login</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="<?php echo BASE_URL ?>public/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="<?php echo BASE_URL ?>public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="<?php echo BASE_URL ?>public/dist/js/adminlte.min.js"></script>
+  <!-- sweetalert2 -->
+  <script src="<?php echo BASE_URL ?>public/plugins/sweetalert2/sweetalert2.all.js"></script>
+
+
+  <?php if (isset($_layoutParams['js']) && count($_layoutParams['js'])) : ?>
+    <?php foreach ($_layoutParams['js'] as $layout) : ?>
+      <script src="<?php echo  $layout ?>" type="text/javascript"></script>
+    <?php endforeach; ?>
+  <?php endif; ?>
+
+</body>
+
+</html>

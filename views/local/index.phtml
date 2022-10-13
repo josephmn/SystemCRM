@@ -1,0 +1,354 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-thumbtack"></i>
+                &nbsp;<strong>MANTENIMIENTO DE LOCALES</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button type="button" id="btn-agregar" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;<b>AGREGAR</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>CODIGO</th>
+                        <th>LOCAL</th>
+                        <th>HR. INICIO</th>
+                        <th>HR. FIN</th>
+                        <th>HR. TOLERANCIA</th>
+                        <th>TIPO MARCACION</th>
+                        <th>ESTADO</th>
+                        <th>ZONA</th>
+                        <th>ABREVIATURA</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->local)) { ?>
+                        <?php foreach ($this->local as $da) { ?>
+                          <tr>
+                            <td class="text-center"><?php echo $da['i_codigo'] ?></td>
+                            <td class="text-left"><?php echo $da['v_descripcion'] ?></td>
+                            <td class="text-center"><?php echo $da['v_hora_inicio'] ?></td>
+                            <td class="text-center"><?php echo $da['v_hora_fin'] ?></td>
+                            <td class="text-center"><?php echo $da['v_tolerancia'] ?></td>
+                            <td class="text-center"><?php echo $da['v_tipo_asistencia'] ?></td>
+                            <td class="text-center"><span class='badge bg-<?php echo $da['v_color_estado'] ?>'><?php echo $da['v_estado'] ?></span></td>
+                            <td class="text-center"><?php echo $da['v_zona'] ?></td>
+                            <td class="text-center"><?php echo $da['v_abreviatura'] ?></td>
+                            <td class='text-center'>
+                              <a href="#" id='<?php echo $da['i_codigo'] ?>' class='btn btn-kimbo btn-sm actualizar'><i class='fa fa-edit'></i></a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL AGREGAR LOCAL-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>REGISTRAR NUEVO LOCAL</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!--INGRESO DEL NUEVO LOCAL A CREAR-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>NOMBRE DEL LOCAL:</label>
+              <div class="input-group" data-target-input="nearest">
+                <!-- onkeyup="countnombre(this);" -->
+                <input id="nombre-local" type="text" class="form-control" maxlength="30" style="text-transform:uppercase;" placeholder="max. 30 caracteres" autocomplete="off">
+                <div class="input-group-append" data-target="#nombre-local">
+                  <div class="input-group-text"><i class="fa fa-thumbtack"></i></div>
+                </div>
+              </div>
+              <!-- <p id="charnombre">0 caracteres</p> -->
+            </div>
+          </div>
+        </div>
+
+        <!--INGRESO DE LA HORARIO INICIO Y FIN-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-inicio">HORA INICIO (HH:mm):</label>
+              <input id="hora-inicio" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-fin">HORA FIN (HH:mm):</label>
+              <input id="hora-fin" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <!--INGRESO TOLERANCIA Y ZONA HORARIA-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="tolerancia">TOLERANCIA (HH:mm):</label>
+              <input id="tolerancia" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ZONA:</label>
+              <select id="id-zona" class="form-control">
+                <?php foreach ($this->zona as $zn) { ?>
+                  <option value="<?php echo $zn['i_codigo']; ?>"><?php echo $zn['v_descripcion']; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!--PARA TIPO MARCACION (1.FISCALIZABLE, 2.NO FISCALIZABLE)-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>TIPO ASISTENCIA:</label>
+              <select id="tipo-asistencia" class="form-control">
+                <option value="0">NO FISCALIZABLE</option>
+                <option value="1" selected="selected">FISCALIZABLE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!--PARA ABREVIATURA DE ASIGNACION AL LOCAL-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ABREVIATURA PARA LOCAL:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="abrev" name="abrev-local" type="text" class="form-control" maxlength="3" onkeypress='return sololetras(event)' style="text-transform:uppercase;" placeholder="max. 3 caracteres" autocomplete="off">
+                <div class="input-group-append" data-target="#abrev-local">
+                  <div class="input-group-text"><i class="fa fa-language"></i></div>
+                </div>
+              </div>
+              <!-- <p id="charabrev">0 caracteres</p> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-registrar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>REGISTRAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-agregar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL LOCAL EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>ACTUALIZAR LOCAL</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!--ID DEL LOCAL-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ID LOCAL:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-local-actualizar" type="text" class="form-control">
+                <div class="input-group-append" data-target="#id-local-actualizar">
+                  <div class="input-group-text"><i class="fa fa-id-badge"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--NOMBRE DEL LOCAL A ACTUALIZAR-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>NOMBRE DEL LOCAL:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-local-actualizar" type="text" class="form-control" maxlength="30" style="text-transform:uppercase;" placeholder="max. 30 caracteres" autocomplete="off">
+                <div class="input-group-append" data-target="#nombre-local-actualizar">
+                  <div class="input-group-text"><i class="fa fa-thumbtack"></i></div>
+                </div>
+              </div>
+              <!-- <p id="charnombre_actualizar">0 caracteres</p> -->
+            </div>
+          </div>
+        </div>
+
+        <!--INGRESO DE LA HORA DE INICIO Y FIN-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-inicio-actualizar">HORA INICIO (HH:mm):</label>
+              <input id="hora-inicio-actualizar" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-fin-actualizar">HORA FIN (HH:mm):</label>
+              <input id="hora-fin-actualizar" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <!--INGRESO TOLERANCIA Y ZONA-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="tolerancia-actualizar">TOLERANCIA (HH:mm):</label>
+              <input id="tolerancia-actualizar" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ZONA:</label>
+              <select id="id-zona-actualizar" class="form-control">
+                <?php foreach ($this->zona as $zn) { ?>
+                  <option value="<?php echo $zn['i_codigo']; ?>"><?php echo $zn['v_descripcion']; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!--PARA TIPO MARCACION (1.FISCALIZABLE, 2.NO FISCALIZABLE)-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>TIPO ASISTENCIA:</label>
+              <select class="form-control" id="tipo-asistencia-actualizar">
+                <option value="0">NO FISCALIZABLE</option>
+                <option value="1">FISCALIZABLE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!--PARA SELECCION DE ESTADO (DEFAULT 1.ACTIVO, 2.INACTIVO)-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-local-actualizar" class="form-control">
+                <option value="0">INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!--PARA ABREVIATURA DE ASIGNACION AL LOCAL-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ABREVIATURA PARA LOCAL:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="abrev-local-actualizar" type="text" class="form-control" maxlength="3" onkeypress='return sololetras(event)' style="text-transform:uppercase;" placeholder="3 caracteres" autocomplete="off">
+                <div class="input-group-append" data-target="#abrev-local-actualizar">
+                  <div class="input-group-text"><i class="fa fa-language"></i></div>
+                </div>
+              </div>
+              <!-- <p id="charabrev_actualizar">0 caracteres</p> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-actualizar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-actualizar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

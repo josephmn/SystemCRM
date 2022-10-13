@@ -1,0 +1,216 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-calendar-alt"></i>
+                                &nbsp;<strong>CONTROL DE VACACIONES</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form action="<?php echo BASE_URL ?>controlvacaciones/cargar_table" method="post">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Documento:</label>
+                                            <div class="input-group date" id="documento" data-target-input="nearest">
+                                                <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>Nombres completos:</label>
+                                            <div class="input-group date" id="nombres" data-target-input="nearest">
+                                                <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                                                <div class="input-group-append">
+                                                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Fecha inicio:</label>
+                                            <div class="input-group date" id="finicio" data-target-input="nearest">
+                                                <input id="finiciodate" name="finiciodate" type="text" class="form-control datetimepicker-input" data-target="#finicio" placeholder="dd/mm/aaaa">
+                                                <div class="input-group-append" data-target="#finicio" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Fecha fin:</label>
+                                            <div class="input-group date" id="ffin" data-target-input="nearest">
+                                                <input id="ffindate" name="ffindate" type="text" class="form-control datetimepicker-input" data-target="#ffin" placeholder="dd/mm/aaaa">
+                                                <div class="input-group-append" data-target="#ffin" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>&nbsp;</label>
+                                            <button type="submit" id="btn_filtrar" class="btn btn-success btn-block">
+                                                <i class="fas fa-filter"></i>
+                                                &nbsp;&nbsp;<b>FILTRAR</b>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                            <div class="col-sm-12">
+                                <h3 style="color:gray"><b>TABLA VACACIONES PROGRAMADAS / EXCEPCIONAL</b></h3>
+                            </div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>CODIGO</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE</th>
+                                        <th>TIPO</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>FECHA REGISTRO</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>ESTADO</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo $this->filasvac ?>
+                                </tbody>
+                            </table>
+                            <br>
+                            <div class="col-sm-12">
+                                <h3 style="color:gray"><b>TABLA VACACIONES POR CUMPLEAÑOS</b></h3>
+                            </div>
+                            <table id="example2" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>CODIGO</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE</th>
+                                        <th>TIPO</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>FECHA REGISTRO</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>ESTADO</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php echo $this->filascum ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+<!-- MODAL VACACIONES APROBAR-->
+<div class="modal fade" id="modal-aprobar" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">CODIGO VACACIONES: <b><span id="codvacaciones_aprobar"></span></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group" align="center">
+                    <p><b><big>¿Esta seguro de aprobar las vacaciones?</big></b></p>
+                </div>
+
+                <div class="form-group">
+                    <button id="btn_si_aprobar" type="button" class="btn btn-warning btn-block"><b>Sí</b></button>
+                </div>
+
+                <div class="form-group">
+                    <button id="btn_no_aprobar" type="button" class="btn btn-warning btn-block"><b>No</b></button>
+                </div>
+
+                <div id="mensaje-eliminar"></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- MODAL VACACIONES DESAPROBAR-->
+<!-- <div class="modal fade" id="modal-desaprobar" data-backdrop="static">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">CODIGO VACACIONES: <b><span id="codvacaciones_desaprobar"></span></b></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="form-group" align="center">
+                            <p><b><big>¿Esta seguro de desaprobar la vacacion?</big></b></p>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="btn_si_desaprobar" type="button" class="btn btn-warning btn-block"><b>Sí</b></button>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="btn_no_desaprobar" type="button" class="btn btn-warning btn-block"><b>No</b></button>
+                        </div>
+
+                        <div id="mensaje-eliminar"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div> -->

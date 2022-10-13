@@ -1,0 +1,321 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 style="color:gray"><b>CRONOGRAMA DETALLADO</b></h1> -->
+                    <a href="<?php echo BASE_URL ?>cronograma">
+                        <h1 style="color:gray"><i class="fas fa-arrow-circle-left fa-beat-fade"></i>&nbsp;&nbsp;<b>ATRAS - "MESES PROGRAMABLES"</b>
+                        </h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fa-solid fa-money-bill-1-wave fa-flip" style="--fa-animation-duration: 3s;"></i>
+                                &nbsp;<strong>PAGO DE VACACIONES</strong>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>AÑO:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vanhio" type="text" class="form-control" value="<?php echo $_GET['anhio'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>MES:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vmes" type="text" class="form-control" value="<?php echo $_GET['mes'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <label>NOMBRE MES:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <input id="vnommes" type="text" class="form-control" value="<?php echo $_GET['nommes'] ?>">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>FECHA CORTE:</label>
+                                        <div class="input-group date" data-target-input="nearest">
+                                            <?php echo $this->input ?>
+                                            <div class="input-group-append" data-target="#fcorte" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>CARGAR Y PRE-VISUALIZAR:</label>
+                                        <button type="button" id="btncargar" class="btn btn-success btn-block"><b>CARGAR DATOS</b></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <!-- Main row -->
+            <div class="row">
+
+                <!-- Left col -->
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-address-book"></i>
+                                &nbsp;<strong>DIAS DE VACACIONES PROGRAMADAS AL PERSONAL</strong>
+                            </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE Y APELLIDOS</th>
+                                        <th>AÑO</th>
+                                        <th>MES</th>
+                                        <th>DIAS</th>
+                                        <th>FECHA INICIO</th>
+                                        <th>FECHA FIN</th>
+                                        <th>TOTAL</th>
+                                        <th>*.PDF</th>
+                                        <th>TIPO CRONOGRAMA</th>
+                                        <th>ESTADO</th>
+                                        <th>#</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (isset($this->cronogramames)) { ?>
+                                        <?php foreach ($this->cronogramames as $inc) { ?>
+                                            <tr>
+                                                <td class="text-center"><?php echo $inc['i_id'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_dni'] ?></td>
+                                                <td class="text-left"><?php echo $inc['v_nombres'] ?></td>
+                                                <td class="text-center">
+                                                    <a><span class="badge bg-primary"><?php echo $inc['i_anhio'] ?></span></a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a><span class="badge bg-info"><?php echo $inc['v_nommes'] ?></span></a>
+                                                </td>
+                                                <td class="text-center"><?php echo $inc['v_dias'] ?></td>
+                                                <td class="text-center"><?php echo $inc['d_finicio'] ?></td>
+                                                <td class="text-center"><?php echo $inc['d_ffin'] ?></td>
+                                                <td class="text-center"><?php echo $inc['v_total'] ?></td>
+                                                <td class='text-center'>
+                                                    <a style='display:<?php if ($inc['v_estado'] == "APROBADO POR JEFE") {
+                                                                            echo 'compact';
+                                                                        } else {
+                                                                            echo 'none';
+                                                                        } ?>' id='<?php echo $inc['i_id'] ?>' href="<?php if ($inc['i_tipo'] == 3) {
+                                                                                                                        echo BASE_URL . 'viveverdum/imprimir_pdf/' . $inc['i_id'];
+                                                                                                                    } else {
+                                                                                                                        echo BASE_URL . 'cronograma/imprimir_pdf/&id=' . $inc['i_id'] . '&anhio=' . $inc['i_anhio'];
+                                                                                                                    } ?>" target="_blank" class='btn btn-danger btn-sm text-white'><i class='fa fa-file-pdf'></i></a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a><span class="badge bg-<?php echo $inc['v_color_tipo'] ?>"><?php echo $inc['v_tipo'] ?></span></a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a><span class="badge bg-<?php echo $inc['v_color'] ?>"><?php echo $inc['v_estado'] ?></span></a>
+                                                </td>
+                                                <td class='text-center'>
+                                                    <a style='display:<?php echo $inc['v_control'] ?>' id='<?php echo $inc['i_id'] ?>' class='btn btn-warning btn-sm editar'><i class='fa fa-edit'></i></a>
+                                                </td>
+                                                <td class='text-center'>
+                                                    <a id="<?php echo $inc['i_id'] ?>" vnombre="<?php echo $inc['v_nombres'] ?>" style='display:<?php echo $inc['v_control'] ?>' id='<?php echo $inc['i_id'] ?>' class='btn btn-danger btn-sm text-white delete'><i class='fa fa-trash-alt'></i></a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- MODAL CRONOGRAMA EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center">CODIGO CRONOGRAMA: <b><span id="cod_editar"></span></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="dni">DNI / CE :</label>
+                            <div class="input-group mb-3">
+                                <input id="documento_editar" name="documento_editar" type="text" class="form-control">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>APELLIDOS Y NOMBRES :</label>
+                            <div class="input-group" id="nombres" data-target-input="nearest">
+                                <input id="nombre_editar" name="nombre_editar" type="text" class="form-control">
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>MES:</label>
+                            <select class="form-control" id="meses_editar">
+                                <option value="0" disabled="disabled" selected="selected">-- SELECCIONE --</option>
+                                <?php foreach ($this->listarmeses as $lc) { ?>
+                                    <option value="<?php echo $lc['i_id']; ?>"><?php echo $lc['v_nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>TIPO CRONOGRAMA:</label>
+                            <select class="form-control" id="tipo_editar">
+                                <option value="0" disabled="disabled" selected="selected">-- SELECCIONE --</option>
+                                <?php foreach ($this->estadocronograma as $lc) { ?>
+                                    <option value="<?php echo $lc['i_id']; ?>"><?php echo $lc['v_nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label># DIAS PROGRAMADOS :</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="dias_editar" name="dias_editar" type="text" maxlength="2" class="form-control" data-target="#dias" placeholder="ingrese dias" autocomplete="off" onkeypress='return validaNumericos(event)'>
+                                <div class="input-group-append">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>AÑO:</label>
+                            <div class="input-group" data-target-input="nearest">
+                                <input id="anhio_editar" name="anhio_editar" type="text" maxlength="2" class="form-control" data-target="#anhio" autocomplete="off">
+                                <div class="input-group-append">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btn_actualizar" type="button" class="btn btn-success btn-block"><b>ACTUALIZAR</b></button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button id="btn_cancelar" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    <!-- /.modal -->
+</div>

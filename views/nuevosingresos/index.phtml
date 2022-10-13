@@ -1,0 +1,118 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-street-view"></i>
+                &nbsp;<strong>REGISTRO DE NUEVOS INGRESOS</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>ID</th>
+                        <th>PUBLICACION</th>
+                        <th>PUESTO</th>
+                        <th>DNI</th>
+                        <th>NOMBRES Y APELLIDOS</th>
+                        <th>ESTADO</th>
+                        <th>CELULAR</th>
+                        <th>CORREO</th>
+                        <th># HIJOS</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->finalistas)) { ?>
+                        <?php foreach ($this->finalistas as $da) { ?>
+                          <tr>
+                            <td class="text-center"><?php echo $da['i_id'] ?></td>
+                            <td class="text-center"><?php echo $da['v_publicacion'] ?></td>
+                            <td class="text-center"><?php echo $da['v_puesto'] ?></td>
+                            <td class="text-center"><?php echo $da['v_dni'] ?></td>
+                            <td class="text-center"><?php echo $da['v_nombres'] ?></td>
+                            <td class="text-center"><span class='badge bg-<?php echo $da['v_color_estado'] ?>'><?php echo $da['v_estado'] ?></span></td>
+                            <td class="text-center"><?php echo $da['v_celular'] ?></td>
+                            <td class="text-center"><?php echo $da['v_correo'] ?></td>
+                            <td class="text-center"><?php echo $da['i_hijos'] ?></td>
+                            <td class="text-center">
+                              <a style="display: <?php if ($da['i_status'] == '1') {
+                                                    echo 'none';
+                                                  } else {
+                                                    echo 'compact';
+                                                  } ?>" id='<?php echo $da['i_id'] ?>' href=' <?php echo BASE_URL ?>nuevosingresos/registropersonal/&dni=<?php echo $da['v_dni'] ?>&publicacion=<?php echo $da['v_publicacion'] ?>' class='btn btn-kimbo btn-sm actualizar'>
+                                <i class='fa fa-edit'></i>
+                              </a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL INSERTANDO -->
+<div class="modal fade" id="modal-actualizar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">CARGANDO DATOS...</h5>
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> -->
+      </div>
+      <div class="modal-body">
+        <p>
+          Se estan cargando los datos del sistema, favor de no cerrar la ventana
+        </p>
+        <p>
+          Tiempo transcurrido: <b id="number"></b> segundos
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

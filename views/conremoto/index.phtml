@@ -1,0 +1,142 @@
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>TRABAJO REMOTO</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-clock"></i>
+                                &nbsp;<strong>CONTROL TRABAJO REMOTO</strong>
+                            </h3>
+                            <div class="card-tools">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>Documento:</label>
+                                        <div class="input-group date" id="documento" data-target-input="nearest">
+                                            <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Nombres completos:</label>
+                                        <div class="input-group date" id="nombres" data-target-input="nearest">
+                                            <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label>AÑO:</label>
+                                    <div class="select2-success">
+                                        <select id="anhio" class="form-control">
+                                            <?php foreach ($this->anhios as $an) { ?>
+                                                <option value="<?php echo $an['i_anhio']; ?>" <?php echo $an['v_selected']; ?>><?php echo $an['i_anhio']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group col-sm-6">
+                                    <label>MES:</label>
+                                    <div class="select2-success">
+                                        <select id="meses" class="form-control">
+                                            <?php foreach ($this->meses as $me) { ?>
+                                                <option value="<?php echo $me['i_id']; ?>" <?php echo $me['v_selected']; ?>><?php echo $me['v_nombre']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>ID</th>
+                                        <th>DNI</th>
+                                        <th>NOMBRE</th>
+                                        <th>SEMANA</th>
+                                        <th>DESCRIPCION SEMANA</th>
+                                        <th>ESTADO</th>
+                                        <th>SEMANA 1</th>
+                                        <th>SEMANA 2</th>
+                                        <th>SEMANA 3</th>
+                                        <th>SEMANA 4</th>
+                                        <th>SEMANA 5</th>
+                                        <th>FECHA APROBACION</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbdet">
+                                    <?php echo $this->filas ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+<!-- MODAL VACACIONES APROBAR-->
+<div class="modal fade" id="modal-aprobar" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">CODIGO VACACIONES: <b><span id="codvacaciones_aprobar"></span></b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group" align="center">
+                    <p><b><big>¿Esta seguro de aprobar las vacaciones?</big></b></p>
+                </div>
+
+                <div class="form-group">
+                    <button id="btn_si_aprobar" type="button" class="btn btn-warning btn-block"><b>Sí</b></button>
+                </div>
+
+                <div class="form-group">
+                    <button id="btn_no_aprobar" type="button" class="btn btn-warning btn-block"><b>No</b></button>
+                </div>
+
+                <div id="mensaje-eliminar"></div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

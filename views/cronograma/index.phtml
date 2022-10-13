@@ -1,0 +1,348 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <section class="col-lg-6 connectedSortable">
+
+          <form action="<?php echo BASE_URL ?>cronograma/filtro_meses" method="post">
+
+            <div class="card card-gray">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-calendar-alt"></i>
+                  &nbsp;<strong>MESES PROGRAMABLES</strong>
+                </h3>
+              </div>
+
+              <div class="card-body">
+
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr class="text-center">
+                      <th>#</th>
+                      <th>ID</th>
+                      <th>MES</th>
+                      <th>AÑO</th>
+                      <th>ESTADO</th>
+                      <th>#</th>
+                      <th>#</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <?php if (isset($this->listarmeses)) { ?>
+                      <?php foreach ($this->listarmeses as $lm) { ?>
+                        <tr>
+                          <td class="text-center"><?php echo $lm['id'] ?></td>
+                          <td class="text-center"><?php echo $lm['i_id'] ?></td>
+                          <td class="text-center"><?php echo $lm['v_nombre'] ?></td>
+                          <td class="text-center"><?php echo $lm['i_anhio'] ?></td>
+                          <td class="text-center">
+                            <a><span class="badge bg-<?php echo $lm['v_color'] ?>"><?php echo $lm['i_estado'] ?></span></a>
+                          </td>
+                          <td class='text-center'>
+                            <a id='<?php echo $lm['id'] ?>' class='btn btn-warning btn-sm text-black editar'><i class='fa fa-edit'></i></a>
+                          </td>
+                          <td class='text-center'>
+                            <a href='<?php echo BASE_URL ?>cronograma/filtro_meses/&mes=<?php echo $lm['i_id'] ?>&anhio=<?php echo $lm['i_anhio'] ?>&nommes=<?php echo $lm['v_nombre'] ?>' class='btn btn-kimbo btn-sm'><i class='fa fa-eye'></i></a>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                    <?php } ?>
+                  </tbody>
+                </table>
+
+              </div>
+
+            </div>
+
+          </form>
+
+        </section>
+
+        <section class="col-lg-6 connectedSortable">
+
+          <div class="card card-gray">
+
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-download"></i>
+                &nbsp;<strong>DESCARGA FORMATOS EXCEL</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+                <form action="<?php echo BASE_URL ?>cronograma/descargar_formato" method="post">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <button type="submit" id="btn-descargar" name="btn-descargar" class="btn btn-success btn-block"><i class="fa fa-file-excel"></i><b>&nbsp;&nbsp;Excel - Formato para importar</b></button>
+                    </div>
+                  </div>
+                </form>
+
+                <form action="<?php echo BASE_URL ?>cronograma/descargar_cronograma" method="post">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <button type="submit" id="btn-descarga-anual" name="btn-descarga-anual" class="btn btn-success btn-block"><i class="fa fa-file-excel"></i><b>&nbsp;&nbsp;Excel - Cronograma anual cargado</b></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="dni">GENERAR NUEVO AÑO:</label>
+                    <div class="input-group mb-3">
+                      <input id="anhio" name="anhio" type="text" maxlength="4" class="form-control" placeholder="Ingresar nuevo año..." onkeypress='return validaNumericos(event)' autocomplete="off">
+                      <div class="input-group-prepend">
+                        <button id="btngen" type="button" class="btn btn-success">
+                          <i class="fas fa-file"></i>
+                          &nbsp;&nbsp;<b>GENERAR</b></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-upload"></i>
+                &nbsp;<strong>CARGAR ARCHIVO DE CRONOGRAMA EN EXCEL</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <label for="exampleInputFile">Cargar Archivo Excel (peso max. 3MB)</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="excel" class="custom-file-input" id="excel">
+                        <label class="custom-file-label" for="excel">Cargar archivo...</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <button type="button" id="btn_cargar" class="btn btn-success btn-block">
+                      <i class="fas fa-upload"></i>
+                      &nbsp;&nbsp;<b>CARGAR</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-edit"></i>
+                &nbsp;<strong>PROGRAMACION MANUAL</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="dni">DNI / CE :</label>
+                    <div class="input-group mb-3">
+                      <input id="documento" name="documento" type="text" maxlength="15" class="form-control" placeholder="Documento DNI o CE" onkeypress='return validaNumericos(event)' autocomplete="off">
+                      <div class="input-group-prepend">
+                        <button id="btnvalidar" type="button" class="btn btn-success">
+                          <i class="fas fa-search"></i>
+                          &nbsp;&nbsp;<b>VALIDAR</b></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>APELLIDOS Y NOMBRES :</label>
+                    <div class="input-group" id="nombres" data-target-input="nearest">
+                      <input id="nombre" name="nombre" type="text" class="form-control" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>AÑO:</label>
+                    <select class="form-control" id="anhiob">
+                      <?php foreach ($this->anhios as $lc) { ?>
+                        <option value="<?php echo $lc['i_anhio']; ?>" <?php echo $lc['v_selected']; ?>><?php echo $lc['i_anhio']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>MES:</label>
+                    <select class="form-control" id="meses">
+                      <option value="0" disabled="disabled" selected="selected">--SELECCIONE--</option>
+                      <?php foreach ($this->meses as $lc) { ?>
+                        <option value="<?php echo $lc['i_id']; ?>"><?php echo $lc['v_nombre']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>TIPO:</label>
+                    <select class="form-control" id="tipoprograma">
+                      <option value="0" disabled="disabled" selected="selected">--SELECCIONE--</option>
+                      <?php foreach ($this->estadocronograma as $lc) { ?>
+                        <option value="<?php echo $lc['i_id']; ?>"><?php echo $lc['v_nombre']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label># DIAS PROGRAMADOS :</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="dias" name="dias" type="text" maxlength="2" class="form-control" data-target="#dias" placeholder="ingrese dias" autocomplete="off" onkeypress='return validaNumericos(event)'>
+                      <div class="input-group-append">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button type="button" id="btngrabar" name="btngrabar" class="btn btn-success btn-block">
+                      <i class="fas fa-save"></i>
+                      &nbsp;&nbsp;<b>GUARDAR PROGRAMACIÓN</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL CRONOGRAMA EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center">CODIGO CRONOGRAMA: <b><span id="cod_editar"></span></b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado" class="form-control">
+                <option value="0">INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn_actualizar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>ACTUALIZAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn_cancelar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

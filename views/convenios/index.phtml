@@ -1,0 +1,1319 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-handshake"></i>
+                &nbsp;<strong>CONVENIOS</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button id="btnimgconvenios" type="button" class="btn btn-info btn-block"><i class="fas fa-image"></i>&nbsp;&nbsp;<b>AGREGAR IMAGEN</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button id="btnpdfconvenios" type="button" class="btn btn-danger btn-block"><i class="fas fa-file-pdf"></i>&nbsp;&nbsp;<b>AGREGAR PDF</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <table id="tbconvenios" class="table table-bordered table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>CONDICION</th>
+                        <th>ESTADO</th>
+                        <th>INICIA</th>
+                        <th>TERMINA</th>
+                        <th>TARJETA</th>
+                        <th>VENTANA</th>
+                        <th># IMAGEN</th>
+                        <th># PDF</th>
+                        <th># TEXTO</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->convenios)) { ?>
+                        <?php foreach ($this->convenios as $da) { ?>
+                          <tr>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['i_id'] ?></td>
+                            <td class="text-left" style="vertical-align:middle;"><?php echo $da['v_nombre'] ?></td>
+                            <td class="text-left" style="vertical-align:middle;"><?php echo $da['v_condicion'] ?></td>
+                            <td class="text-center" style="vertical-align:middle;"><span class='badge bg-<?php echo $da['v_color_estado'] ?>'><?php echo $da['v_estado'] ?></span></td>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['d_finicio'] ?></td>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['d_ffin'] ?></td>
+                            <td class='text-center'>
+                              <a href="<?php echo BASE_URL . $da['v_tarjeta'] ?>" class='btn btn-primary btn-sm' target="_blanker"><i class='fa fa-image'></i></a>
+                            </td>
+                            <td class='text-center'>
+                              <a href="<?php echo BASE_URL . $da['v_ventana'] ?>" class='btn btn-<?php echo $da['v_color_icon'] ?> btn-sm' target="_blanker"><i class='<?php echo $da['v_icon'] ?>'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' style="display: <?php echo $da['v_none_imagen'] ?>;" href="#" class='btn btn-kimbo btn-sm act-datos'><i class='fa fa-edit'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' style="display: <?php echo $da['v_none_pdf'] ?>;" href="#" class='btn btn-kimbo btn-sm act-datos-pdf'><i class='fa fa-edit'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' style="display: <?php echo $da['v_none_texto'] ?>;" href="#" class='btn btn-kimbo btn-sm act-convenio'><i class='fa fa-edit'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' nombre="<?php echo $da['v_nombre'] ?>" href="#" class='btn btn-danger btn-sm del-convenio'><i class='fa fa-trash-alt'></i></a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-user-graduate"></i>
+                &nbsp;<strong>CONVENIOS EDUCATIVOS</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button id="btnpdfconveniosedu" type="button" class="btn btn-danger btn-block"><i class="fas fa-file-pdf"></i>&nbsp;&nbsp;<b>AGREGAR PDF</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <table id="tbconveniosedu" class="table table-bordered table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>CONDICION</th>
+                        <th>ESTADO</th>
+                        <th>INICIA</th>
+                        <th>TERMINA</th>
+                        <th>TARJETA</th>
+                        <th>VENTANA</th>
+                        <th># PDF</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->conveniosedu)) { ?>
+                        <?php foreach ($this->conveniosedu as $da) { ?>
+                          <tr>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['i_id'] ?></td>
+                            <td class="text-left" style="vertical-align:middle;"><?php echo $da['v_nombre'] ?></td>
+                            <td class="text-left" style="vertical-align:middle;"><?php echo $da['v_condicion'] ?></td>
+                            <td class="text-center" style="vertical-align:middle;"><span class='badge bg-<?php echo $da['v_color_estado'] ?>'><?php echo $da['v_estado'] ?></span></td>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['d_finicio'] ?></td>
+                            <td class="text-center" style="vertical-align:middle;"><?php echo $da['d_ffin'] ?></td>
+                            <td class='text-center'>
+                              <a href="<?php echo BASE_URL . $da['v_tarjeta'] ?>" class='btn btn-primary btn-sm' target="_blanker"><i class='fa fa-image'></i></a>
+                            </td>
+                            <td class='text-center'>
+                              <a href="<?php echo BASE_URL . $da['v_ventana'] ?>" class='btn btn-<?php echo $da['v_color_icon'] ?> btn-sm' target="_blanker"><i class='<?php echo $da['v_icon'] ?>'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' style="display: <?php echo $da['v_none_pdf'] ?>;" href="#" class='btn btn-kimbo btn-sm actedu-datos-pdf'><i class='fa fa-edit'></i></a>
+                            </td>
+                            <td class='text-center' style="vertical-align:middle;">
+                              <a id='<?php echo $da['i_id'] ?>' nombre="<?php echo $da['v_nombre'] ?>" href="#" class='btn btn-danger btn-sm deledu-convenio'><i class='fa fa-trash-alt'></i></a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL AGREGAR CONVENIO - IMAGENES -->
+<div class="modal fade" id="modal-agregar-convenio-img" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-image fa-bounce'></i>&nbsp;&nbsp;<b>AGREGAR CONVENIO - IMAGEN</b></h4>
+        <button id="close-modal-agregar" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-imagen-convenio" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <option value="1">Ventana + Imagen</option>
+                <option value="2">Descargar Imagen</option>
+                <option value="3">Ventana + Imagen + Texto</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-imagen-convenio" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-imagen-convenio" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-imagen-convenio" type="text" class="form-control datetimepicker-input" data-target="#finicio-imagen-convenio" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-imagen-convenio" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-imagen-convenio" type="text" class="form-control datetimepicker-input" data-target="#ffin-imagen-convenio" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-imagen-convenio" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <p><mark>* Se especifica que el tamaño de la imagen para la tarjeta debe ser de <code><b>300px</b></code> por <code><b>145px</b></code>.</mark></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="imagen-tarjeta" name="imagen-tarjeta" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <img id="preview-imagen-tarjeta" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="imagen-ventana" name="imagen" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <img id="preview-imagen-ventana" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->
+            <div class="col-sm-6">
+              <button id="btnagregar-convenio-imagen" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenio-imagen" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL EDITAR DATOS CONVENIO + IMAGENES -->
+<div class="modal fade" id="modal-editar-convenio-img" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-edit fa-bounce'></i>&nbsp;&nbsp;<b>EDITAR CONVENIO - IMAGEN</b></h4>
+        <button id="close-modal-datos" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-1">
+            <div class="form-group">
+              <label>ID:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-imagen-convenio1" type="text" class="form-control" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-imagen-convenio1" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <option value="1">Ventana + Imagen</option>
+                <option value="2">Descargar Imagen</option>
+                <option value="3">Ventana + Imagen + Texto</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-imagen-convenio1" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-imagen-convenio1" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-imagen-convenio1" type="text" class="form-control datetimepicker-input" data-target="#finicio-imagen-convenio1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-imagen-convenio1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-imagen-convenio1" type="text" class="form-control datetimepicker-input" data-target="#ffin-imagen-convenio1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-imagen-convenio1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <p><mark>* Se especifica que el tamaño de la imagen para la tarjeta debe ser de <code><b>300px</b></code> por <code><b>145px</b></code>.</mark></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="imagen-tarjeta1" name="imagen-tarjeta" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div id="draw-tarjeta1" style='border-radius: 10px; -webkit-border-radius: 10px;'>
+                        <img id="ruta-imagen-tarjeta1" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="imagen-ventana1" name="imagen" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div id="draw-ventana1" style='border-radius: 10px; -webkit-border-radius: 10px;'>
+                        <img id="ruta-imagen-ventana1" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btnagregar-convenio-imagen1" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenio-imagen1" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL EDITAR CONVENIO - IMAGEN + TEXTO -->
+<div class="modal fade" id="modal-editar-convenio" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class="fa fa-edit fa-bounce"></i><b>&nbsp;&nbsp;ACTUALIZAR CONVENIO</b></h4>
+        <button id="close-modal-disenio" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="row">
+            <div class="col-md-12 col-6">
+              <div class="form-group">
+                <p><b><mark>* Se especifica que existen variables globales en el sistema, las cuales pueden ser de su uso. <a class="modal-global" href="#">click aqui</a></b></p>
+              </div>
+            </div>
+          </div>
+          <section class="col-lg-6 connectedSortable">
+            <div class="col-md-12">
+              <div class="form-group">
+                <div id="draw-img" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="col-lg-6 connectedSortable">
+            <div class="row">
+              <div class="col-md-12 col-6">
+                <button id="btn-refresh" type="button" class="btn btn-warning btn-block"><i class="fa-solid fa-arrows-rotate fa-spin"></i><b>&nbsp;&nbsp;Refrescar imagen</b></button>
+              </div>
+            </div>
+            <div class="row">
+
+              <div class="form-group col-sm-6">
+                <label>ID:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letraid" type="text" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group col-sm-6">
+                <label>IDCONVENIO:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="convenioid" type="text" class="form-control">
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <div class="form-group col-sm-12">
+                <label>TEXTO:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letrastext" type="text" class="form-control" autocomplete="off" placeholder="ingrese el texto...">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label>TAMAÑO DE LETRA:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letrasize" type="number" class="form-control" value="10" min="0" max="100">
+                </div>
+              </div>
+
+              <div class="form-group col-sm-4">
+                <label>COLOR:</label>
+                <div class="input-group ql-color-picker">
+                  <input id="letracolor" type="color" class="form-control" value="#000000">
+                </div>
+              </div>
+
+              <div class="form-group col-sm-4">
+                <label>ANGULO:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letraangle" type="number" class="form-control" value="0" min="0">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-4">
+                <label>POSICION X:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letrax" type="number" class="form-control" value="0" min="0">
+                </div>
+              </div>
+
+              <div class="form-group col-sm-4">
+                <label>POSICION Y:</label>
+                <div class="input-group" data-target-input="nearest">
+                  <input id="letray" type="number" class="form-control" value="0" min="0">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-6">
+                <button id="btn-agregar-disenio" type="button" class="btn btn-success btn-block"><b><i class="fa-solid fa-save fa-beat"></i>&nbsp;&nbsp;Guardar diseño</b></button>
+              </div>
+              <div class="col-md-6 col-6">
+                <button id="btn-limpiar-disenio" type="button" class="btn btn-danger btn-block"><b><i class="fa-solid fa-brush fa-beat"></i>&nbsp;&nbsp;Limpiar diseño</b></button>
+              </div>
+            </div>
+          </section>
+        </div>
+        <section class="col-lg-12 connectedSortable">
+          <div class="row">
+            <div class="col-md-12 col-12">
+              <table id="example" class="table table-bordered">
+                <thead>
+                  <tr class="text-center">
+                    <th># ID</th>
+                    <th>IDCONVENIO</th>
+                    <th>TEXTO</th>
+                    <th>TAMAÑO</th>
+                    <th>COLOR</th>
+                    <th>ANGULO</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="tbdisenioimg" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-6">
+              <button id="btn-cancelar-disenio" type="button" class="btn btn-danger btn-block"><b>Cancelar</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL AGREGAR CONVENIO - PDF -->
+<div class="modal fade" id="modal-agregar-convenio-pdf" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-file-pdf fa-bounce'></i>&nbsp;&nbsp;<b>AGREGAR CONVENIO - PDF</b></h4>
+        <button id="close-modal-pdf" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-pdf-convenio" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <!-- <option value="4">Ventana + PDF</option> -->
+                <option value="5">Descargar PDF</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-pdf-convenio" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-pdf-convenio" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-pdf-convenio" type="text" class="form-control datetimepicker-input" data-target="#finicio-pdf-convenio" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-pdf-convenio" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-pdf-convenio" type="text" class="form-control datetimepicker-input" data-target="#ffin-pdf-convenio" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-pdf-convenio" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-tarjeta" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <img id="preview-pdf-tarjeta" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>ARCHIVO PDF EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-ventana" type="file" accept=".pdf">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <img id="preview-imagen-ventana" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+          </section>
+        </div>
+
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btnagregar-convenio-pdf" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenio-pdf" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL EDITAR DATOS - PDF -->
+<div class="modal fade" id="modal-editar-convenio-pdf" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-file-pdf fa-bounce'></i>&nbsp;&nbsp;<b>EDITAR CONVENIO - PDF</b></h4>
+        <button id="close-modal-pdf-datos" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-1">
+            <div class="form-group">
+              <label>ID:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-pdf-convenio1" type="text" class="form-control" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-pdf-convenio1" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <!-- <option value="4">Ventana + PDF</option> -->
+                <option value="5">Descargar PDF</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-pdf-convenio1" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-pdf-convenio1" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-pdf-convenio1" type="text" class="form-control datetimepicker-input" data-target="#finicio-pdf-convenio1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-pdf-convenio1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-pdf-convenio1" type="text" class="form-control datetimepicker-input" data-target="#ffin-pdf-convenio1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-pdf-convenio1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-tarjeta1" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div id="draw-pdf-tarjeta1" class="input-group">
+                        <img id="preview-pdf-tarjeta1" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>ARCHIVO PDF EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-ventana1" type="file" accept=".pdf">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btnagregar-convenio-pdf1" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenio-pdf1" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL AGREGAR CONVENIO EDUCATIVO - PDF -->
+<div class="modal fade" id="modal-agregar-convenioedu-pdf" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-file-pdf fa-bounce'></i>&nbsp;&nbsp;<b>AGREGAR CONVENIO EDUCATIVO - PDF</b></h4>
+        <button id="close-modaledu-pdf" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-pdf-convenioedu" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <!-- <option value="1">Ventana + PDF</option> -->
+                <option value="2">Descargar PDF</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-pdf-convenioedu" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-pdf-convenioedu" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-pdf-convenioedu" type="text" class="form-control datetimepicker-input" data-target="#finicio-pdf-convenioedu" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-pdf-convenioedu" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-pdf-convenioedu" type="text" class="form-control datetimepicker-input" data-target="#ffin-pdf-convenioedu" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-pdf-convenioedu" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-tarjeta-edu" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <img id="preview-pdf-tarjeta-edu" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>ARCHIVO PDF EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-ventana-edu" type="file" accept=".pdf">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btnagregar-convenioedu-pdf" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenioedu-pdf" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL EDITAR DATOS - PDF -->
+<div class="modal fade" id="modal-editar-convenioedu-pdf" data-backdrop="static">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class='fa fa-file-pdf fa-bounce'></i>&nbsp;&nbsp;<b>EDITAR CONVENIO EDUCATIVO - PDF</b></h4>
+        <button id="close-modaledu-pdf-datos" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-1">
+            <div class="form-group">
+              <label>ID:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-pdf-convenioedu1" type="text" class="form-control" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label>CONDICIÓN:</label>
+              <select id="condicion-pdf-convenioedu1" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+                <!-- <option value="1">Ventana + PDF</option> -->
+                <option value="2">Descargar PDF</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label>NOMBRE:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-pdf-convenioedu1" type="text" class="form-control" maxlength="30" placeholder="max. 30 caracteres" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado-pdf-convenioedu1" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA INICIO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="finicio-pdf-convenioedu1" type="text" class="form-control datetimepicker-input" data-target="#finicio-pdf-convenioedu1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#finicio-pdf-convenioedu1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label>FECHA FIN:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="ffin-pdf-convenioedu1" type="text" class="form-control datetimepicker-input" data-target="#ffin-pdf-convenioedu1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#ffin-pdf-convenioedu1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>IMAGEN DE TARJETA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-tarjeta-edu1" type="file" accept=".png,.jpg,.jpeg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>IMAGEN SELECCIONADA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div id="draw-pdf-tarjeta-edu1" class="input-group">
+                        <img id="preview-pdf-tarjeta-edu1" class="card-img-top" style="border:1px solid black; -webkit-border-radius: 10px;" src="<?php echo BASE_URL ?>public/dist/img/beneficios/convenios/tarjeta-no-disponible.jpg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <section class="col-lg-6 connectedSortable">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>ARCHIVO PDF EN VENTANA:</label>
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <input id="pdf-ventana-edu1" type="file" accept=".pdf">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </section>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btnagregar-convenioedu-pdf1" type="button" class="btn btn-success btn-block"><b>GUARDAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btncancelar-convenioedu-pdf1" type="button" class="btn btn-danger btn-block"><b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL GLOBAL -->
+<div class="modal fade" id="modal-variable-global" data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><i class="fa fa-edit"></i><b>&nbsp;&nbsp;VARIABLES GLOBALES DEL SISTEMA</b></h4>
+        <button id="close-modal-disenio" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-6">
+            <div class="form-group">
+              <p>Considerar el texto resaltado, incluyendo los corchetes: <mark>[variable]</mark>:</p>
+              <br>
+              <p><mark><b>[ruc]</b></mark> => RUC de la empresa. Ejm: "<b><?php echo ruc ?></b>".</p>
+              <p><mark><b>[razon]</b></mark> => Razon social de la empresa. Ejm: "<b><?php echo $_SESSION['razon'] ?></b>".</p>
+              <p><mark><b>[nombrecomercial]</b></mark> => Nombre comercial de la empresa. Ejm: "<b><?php echo nombrecomercial ?></b>".</p>
+              <br>
+              <p><mark><b>[perfil]</b></mark> => Perfil del usuario logueado. Ejm: uds tiene el usuario "<b><?php echo $_SESSION['perfil'] ?></b>.</p>
+              <p><mark><b>[dni]</b></mark> => Documento de identidad del usuario logueado. Ejm: <b><?php echo $_SESSION['dni'] ?></b>.</p>
+              <p><mark><b>[usuario]</b></mark> => Primer nombre y Primer apellido del usuario logueado. Ejm: <b><?php echo $_SESSION['usuario'] ?></b>.</p>
+              <p><mark><b>[nombre]</b></mark> => Nombres y Apellidos completos del usuario logueado. Ejm: <b><?php echo $_SESSION['nombre'] ?></b>.</p>
+              <br>
+              <p><mark><b>[fecha]</b></mark> => Fecha actual del sistema. Ejm: fecha de hoy "<b><?php echo fechasis ?></b>".</p>
+              <p><mark><b>[fechahora]</b></mark> => Fecha y hora actual del sistema. Ejm: La fecha y hora actual es "<b><?php echo fechahorasis ?></b>"</p>
+              <br>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6 col-6">
+              <button id="btn-cancelar-global" type="button" class="btn btn-danger btn-block"><b>Salir</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

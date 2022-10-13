@@ -1,0 +1,146 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <section class="col-lg-3 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                &nbsp;<strong>REGISTRO DE VACACIONES</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-md-12">
+                  <!-- onkeypress="return valideKey(event);" -->
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">DNI / CE</label>
+                    <div class="input-group mb-3">
+                      <input id="documento" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" placeholder="Documento">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombres y Apellidos</label>
+                    <div class="input-group mb-3">
+                      <input id="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" placeholder="Nombres y Apellidos">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa fa-address-card"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Tipo vacacion</label>
+                    <select id="tipovacacion" class="form-control">
+                      <option value="1" selected>PROGRAMADO</option>
+                      <option value="2">EXCEPCIONAL</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Fecha inicio</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="finicio" type="text" class="form-control datetimepicker-input" data-target="#finicio" placeholder="dd/mm/aaaa" autocomplete="off">
+                      <div class="input-group-append" data-target="#finicio" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Fecha fin</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="ffin" type="text" class="form-control datetimepicker-input" data-target="#ffin" placeholder="dd/mm/aaaa" autocomplete="off">
+                      <div class="input-group-append" data-target="#ffin" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button id="btnagregar" type="button" class="btn btn-success btn-block">
+                      <i class="fas fa-save"></i>
+                      &nbsp;&nbsp;<b>REGISTRAR VACACIONES</b></button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <section class="col-lg-9 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-address-book"></i>
+                &nbsp;<strong>REGISTRO DE VACACIONES</strong>
+              </h3>
+            </div>
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>MES</th>
+                    <th>F.INICIO</th>
+                    <th>F.FIN</th>
+                    <th>DIAS</th>
+                    <th>TIPO</th>
+                    <th>ESTADO</th>
+                    <th>REPORTE</th>
+                    <th>F.REGISTRO</th>
+                    <th>F. APROBACION</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php echo $this->vacaciones ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </section>
+
+</div>

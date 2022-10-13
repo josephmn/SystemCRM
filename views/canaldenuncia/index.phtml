@@ -1,0 +1,115 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>CANAL DE DENUNCIA</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-envelope"></i>
+                                &nbsp;<strong>ENVIAR CORREO</strong>
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>DE:</label>
+                                            <div class="input-group" data-target-input="nearest">
+                                                <input id="envio_de" name="envio_de" type="text" value="<?php echo $_SESSION['correo'] ?>" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>NOMBRE:</label>
+                                            <div class="input-group" data-target-input="nearest">
+                                                <input id="nombre" name="nombre" type="text" value="<?php echo $_SESSION['nombre'] ?>" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>SELECCIÓN OPCIONAL:</label>
+                                            <div class="form-check">
+                                                <input id="icheck" name="icheck" type="checkbox" class="form-check-input">
+                                                <label class="form-check-label" for="exampleCheck1">Deseo hacer mi denuncia anónima</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label id="typearchivo">CARGAR PRUEBAS</label>
+                                            <div class="input-group">
+                                                <div class="input-group">
+                                                    <input id="archivo" name="archivo" type="file">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>FECHA DE SITUACIÓN:</label>
+                                            <div class="input-group date" data-target-input="nearest">
+                                                <input id="fecha" name="fecha" type="text" class="form-control datetimepicker-input" value="<?php echo date("d/m/Y"); ?>" placeholder="dd/mm/aaaa" autocomplete="off">
+                                                <div class="input-group-append" data-target="#fecha" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label>ASUNTO:</label>
+                                            <div class="input-group" data-target-input="nearest">
+                                                <input id="asunto" name="asunto" type="text" class="form-control" autocomplete="off">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="form-label font-weight-bolder">ESCRIBE LA DENUNCIA <mark>(escribe lo más detallado posible)</mark>:</label>
+                                        <textarea id="descripcion" name="descripcion" class="form-control" maxlength="2000" rows="10" placeholder="escribir detalles..." autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <button id="btn-enviar" name="submit" class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<b>ENVIAR CORREO</b></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,180 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>ASISTENTES</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <section class="col-lg-12 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-user-tie"></i>
+                                &nbsp;<strong>ASISTENTES</strong>
+                            </h3>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="row">
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label>DNI / CE. (JEFATURA):</label>
+                                        <div class="input-group date" id="documento" data-target-input="nearest">
+                                            <input id="dni" type="text" class="form-control" value="<?php echo $this->dnijefe ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>NOMBRES Y APELLIDOS (JEFATURA):</label>
+                                        <div class="input-group date" id="nombres" data-target-input="nearest">
+                                            <input id="nombre" type="text" class="form-control" value="<?php echo $this->nombrejefe ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <button type="button" id="btnagregar" class="btn btn-success btn-block">
+                                            <i class="fas fa-plus"></i>
+                                            &nbsp;&nbsp;<b>AGREGAR</b></button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <table id="example1" class="table table-bordered">
+                                        <thead class="thead-light">
+                                            <tr class="text-center">
+                                                <th>DNI</th>
+                                                <th>Nombre</th>
+                                                <th>Cargo</th>
+                                                <th>#</th>
+                                                <!-- <th>#</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (isset($this->asistentes)) { ?>
+                                                <?php foreach ($this->asistentes as $tr) { ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $tr['v_dni_asistente'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_nombre'] ?></td>
+                                                        <td class="text-center"><span class="badge bg-warning"><?php echo $tr['v_cargo'] ?></span></td>
+                                                        <td class='text-center'>
+                                                            <a id="<?php echo $tr['v_dni_asistente'] ?>" nomasis="<?php echo $tr['v_nombre'] ?>" href="#" class="btn btn-danger btn-sm eliminar" style="color:white">
+                                                                <i class="fas fa-trash-alt"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- MODAL EDITAR PERFIL-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ASIGNAR PERSONAL A JEFATURA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">DNI / CE. (JEFATURA):</label>
+                        <input type="text" id="dnijefe" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Nombres y Apellidos (JEFATURA):</label>
+                        <input type="text" id="nombrejefe" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="dni">DNI / CE. (ASISTENTE):</label>
+                            <div class="input-group mb-3">
+                                <input id="dniasistente" type="text" maxlength="15" class="form-control" placeholder="Documento DNI o CE" onkeypress='return validaNumericos(event)' autocomplete="off">
+                                <div class="input-group-prepend">
+                                    <button id="btnvalidar" type="button" class="btn btn-success"><b>VALIDAR</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="form-label font-weight-bolder">Nombres y Apellidos:</label>
+                        <input type="text" id="nombreasistente" tabindex="1" class="form-control" autocomplete="off" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button id="btnguardar" type="button" class="btn btn-success btn-block">
+                                <i class="fas fa-save"></i>
+                                <b>Guardar</b></button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="col-sm-6">
+                            <button id="btncancelar" type="button" class="btn btn-danger btn-block">
+                                <i class="fas fa-ban"></i>
+                                <b>Cancelar</b></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

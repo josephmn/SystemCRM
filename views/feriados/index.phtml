@@ -1,0 +1,229 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-clock"></i>
+                &nbsp;<strong>MANTENIMIENTO FERIADOS ANUALES</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button type="button" id="btn-agregar" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;<b>AGREGAR</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <label>AÑO:</label>
+                  <div class="select2-success">
+                    <select id="anhio" class="form-control">
+                      <?php foreach ($this->anhios as $an) { ?>
+                        <option value="<?php echo $an['i_anhio']; ?>" <?php echo $an['v_selected']; ?>><?php echo $an['i_anhio']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <table id="example1" class="table table-bordered table-bordered">
+                <thead>
+                  <tr class="text-center">
+                    <th>ID</th>
+                    <th>DESCRIPCION</th>
+                    <th>AÑO</th>
+                    <th>FECHA</th>
+                    <th>MES</th>
+                    <th>ESTADO</th>
+                    <th>FECHA REGISTRO</th>
+                    <th>FECHA ACTUALIZACION</th>
+                    <th>#</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody id="tbferiado">
+                  <?php echo $this->filas ?>
+                </tbody>
+              </table>
+
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL AGREGAR LOCAL-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>REGISTRAR FECHA FERIADO</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>DESCRIPCION:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="descripcion" type="text" class="form-control" placeholder="Ingrese descripcion del feriado..." autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>FECHA FERIADO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="fferiado" type="text" class="form-control datetimepicker-input" data-target="#fferiado" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#fferiado" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-registrar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>REGISTRAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-agregar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL LOCAL EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>ACTUALIZAR FERIADO</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ID:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-feriado1" type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>DESCRIPCION:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="descripcion1" type="text" class="form-control" placeholder="Ingrese descripcion del feriado..." autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>FECHA FERIADO:</label>
+              <div class="input-group date" data-target-input="nearest">
+                <input id="fferiado1" type="text" class="form-control datetimepicker-input" data-target="#fferiado1" placeholder="dd/mm/aaaa">
+                <div class="input-group-append" data-target="#fferiado1" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="estado1" class="form-control">
+                <option value="0">INACTIVO</option>
+                <option value="1">ACTIVO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-actualizar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>ACTUALIZAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-actualizar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

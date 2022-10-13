@@ -1,0 +1,109 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <section class="col-lg-8 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-file-pdf"></i>
+                &nbsp;<strong>REVISION DE BOLETAS DE PAGO AL PERSONAL</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <form action="<?php echo BASE_URL ?>boletapago/cargar_boletas" method="post">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>PERIODO:</label>
+                      <div class="input-group" data-target-input="nearest">
+                        <input id="periodo" name="periodo" type="text" class="form-control" data-target="#periodo" placeholder="ingrese periodo...'<?php echo date('Y') ?>01'" autocomplete="off">
+                        <div class="input-group-append">
+                          <div class="input-group-text"><i class="fas fa-user"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label>&nbsp;</label>
+                      <button type="submit" class="btn btn-success btn-block">
+                        <i class="fas fa-search"></i>
+                        &nbsp;&nbsp;<b>CARGAR</b></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr class="text-center">
+                    <th>NRO BOLETA</th>
+                    <th>DNI</th>
+                    <th>NOMBRES COMPLETOS</th>
+                    <th>AÑO</th>
+                    <th>PERIODO</th>
+                    <th>SUELDO</th>
+                    <th>#</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if (isset($this->listarboletas)) { ?>
+                    <?php foreach ($this->listarboletas as $bo) { ?>
+                      <tr>
+                        <td class="text-center"><?php echo $bo['nbrboleta'] ?></td>
+                        <td class="text-center"><?php echo $bo['perid'] ?></td>
+                        <td class="text-left"><?php echo $bo['pernombre'] ?></td>
+                        <td class="text-center"><?php echo $bo['anhio'] ?></td>
+                        <td class="text-center"><?php echo $bo['periodoid'] ?></td>
+                        <td class="text-center"><?php echo number_format($bo['sneto'], 2) ?></td>
+                        <td class="text-center">
+                          <a id="<?php echo $bo['nbrboleta'] ?>" href="<?php echo BASE_URL ?>boletapago/boleta/<?php echo $bo['nbrboleta'] ?>" class="btn btn-danger btn-sm bol" target="_blank" style="color:white"><i class="fas fa-file-pdf"></i></a>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

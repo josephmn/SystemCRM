@@ -1,0 +1,304 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-clock"></i>
+                &nbsp;<strong>MANTENIMIENTO HORARIOS FLEX TIME</strong>
+              </h3>
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <button type="button" id="btn-agregar" class="btn btn-success btn-block"><i class="fas fa-plus-circle"></i>&nbsp;&nbsp;<b>AGREGAR</b></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <table id="example1" class="table table-bordered table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>HR. INICIO</th>
+                        <th>HR. FIN</th>
+                        <th>HR. TOLERANCIA</th>
+                        <th>ESTADO</th>
+                        <th>ZONA</th>
+                        <th>LOCAL</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->flex)) { ?>
+                        <?php foreach ($this->flex as $fx) { ?>
+                          <tr>
+                            <td class="text-center"><?php echo $fx['i_id'] ?></td>
+                            <td class="text-left"><?php echo $fx['v_nombre'] ?></td>
+                            <td class="text-center"><?php echo $fx['v_hora_inicio'] ?></td>
+                            <td class="text-center"><?php echo $fx['v_hora_fin'] ?></td>
+                            <td class="text-center"><?php echo $fx['v_tolerancia'] ?></td>
+                            <td class="text-center"><span class='badge bg-<?php echo $fx['v_color_estado'] ?>'><?php echo $fx['v_estado'] ?></span></td>
+                            <td class="text-center"><?php echo $fx['v_zona'] ?></td>
+                            <td class="text-center"><?php echo $fx['v_local'] ?></td>
+                            <td class='text-center'>
+                              <a href="#" id='<?php echo $fx['i_id'] ?>' class='btn btn-kimbo btn-sm actualizar'><i class='fa fa-edit'></i></a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL AGREGAR LOCAL-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>REGISTRAR NUEVO FLEX TIME</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>NOMBRE FLEX TIME:</label>
+              <p><mark>*Este aparecera para ser seleccioado por los usuarios</mark></p>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-flex" type="text" class="form-control" placeholder="ingrese nombre...preferencia (07:30 am - 04:45 pm)" autocomplete="off">
+                <div class="input-group-append" data-target="#nombre-flex">
+                  <div class="input-group-text"><i class="fa fa-thumbtack"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p><mark>Formato para hora, siempre es 24 H, no olvidar..!!</mark></p>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-inicio">HORA INICIO (HH:mm):</label>
+              <input id="hora-inicio" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-fin">HORA FIN (HH:mm):</label>
+              <input id="hora-fin" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="tolerancia">TOLERANCIA (HH:mm):</label>
+              <input id="tolerancia" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ZONA:</label>
+              <select id="id-zona" class="form-control">
+                <?php foreach ($this->zona as $zn) { ?>
+                  <option value="<?php echo $zn['i_codigo']; ?>"><?php echo $zn['v_descripcion']; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>LOCAL:</label>
+              <select id="id-local" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-registrar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>REGISTRAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-agregar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MODAL LOCAL EDITAR-->
+<div class="modal fade" id="modal-editar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>ACTUALIZAR FLEX TIME</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>ID:</label>
+              <div class="input-group" data-target-input="nearest">
+                <input id="id-flex" type="text" class="form-control">
+                <div class="input-group-append" data-target="#id-local-actualizar">
+                  <div class="input-group-text"><i class="fa fa-id-badge"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label>NOMBRE FLEX TIME:</label>
+              <p><mark>*Este aparecera para ser seleccioado por los usuarios</mark></p>
+              <div class="input-group" data-target-input="nearest">
+                <input id="nombre-flex1" type="text" class="form-control" placeholder="ingrese nombre...preferencia (07:30 am - 04:45 pm)" autocomplete="off">
+                <div class="input-group-append" data-target="#nombre-flex">
+                  <div class="input-group-text"><i class="fa fa-thumbtack"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p><mark>Formato para hora, siempre es 24 H, no olvidar..!!</mark></p>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-inicio1">HORA INICIO (HH:mm):</label>
+              <input id="hora-inicio1" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-fin1">HORA FIN (HH:mm):</label>
+              <input id="hora-fin1" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="tolerancia1">TOLERANCIA (HH:mm):</label>
+              <input id="tolerancia1" type="time" class="form-control" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ESTADO:</label>
+              <select id="id-estado1" class="form-control">
+                <option value="0" selected>INACTIVO</option>
+                <option value="1" selected>ACTIVO</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>ZONA:</label>
+              <select id="id-zona1" class="form-control">
+                <?php foreach ($this->zona as $zn) { ?>
+                  <option value="<?php echo $zn['i_codigo']; ?>"><?php echo $zn['v_descripcion']; ?></option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>LOCAL:</label>
+              <select id="id-local1" class="form-control">
+                <option value="0" selected>-- SELECCIONE --</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-actualizar" type="button" class="btn btn-success btn-block">
+                <i class="fas fa-save"></i>
+                &nbsp;&nbsp;<b>ACTUALIZAR</b></button>
+            </div>
+            <div class="col-sm-6">
+              <button id="btn-cancelar-actualizar" type="button" class="btn btn-danger btn-block">
+                <i class="fas fa-ban"></i>
+                &nbsp;&nbsp;<b>CANCELAR</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,175 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['submenus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <section class="col-lg-6">
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- form-group -->
+                                <div class="col-xs-12 col-sm-4 col-12">
+                                    <button id="btnagregar" name="<?php echo $this->perfil ?>" type="button" class="btn btn-success btn-block font-weight-bolder" style="color: White;">
+                                        <i class="fas fa-caret-square-down"></i><span>&nbsp;&nbsp;Agregar Acceso</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <table id="example1" class="table table-bordered">
+                                        <thead class="thead-light">
+                                            <tr class="text-center">
+                                                <th># Código</th>
+                                                <th>Nombre</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (isset($this->menu)) { ?>
+                                                <?php foreach ($this->menu as $tr) { ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $tr['i_submenu'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_menu'] ?></td>
+                                                        <td class='text-center'>
+                                                            <a <?php if ($tr['v_menu'] == "Nosotros") {
+                                                                    echo "style='display:none'";
+                                                                } else {
+                                                                    echo "style='display:inline-block'";
+                                                                } ?> id='<?php echo $tr['i_submenu'] ?>' perfil='<?php echo $tr['i_perfil'] ?>' class='btn btn-danger btn-sm text-white deletemenu'>
+                                                                <i class='fa fa-trash-alt'></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-lg-6">
+                    <div class="card col-12">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-12 col-12">
+                                    <table id="example2" class="table table-bordered">
+                                        <thead class="thead-light">
+                                            <tr class="text-center">
+                                                <th># Código</th>
+                                                <th>Menú</th>
+                                                <th>Nombre</th>
+                                                <th>#</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (isset($this->submenu)) { ?>
+                                                <?php foreach ($this->submenu as $tr) { ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $tr['i_submenu'] ?></td>
+                                                        <td class="text-center"><?php echo $tr['v_menu'] ?></td>
+                                                        <td class="text-left"><?php echo $tr['v_submenu'] ?></td>
+                                                        <td class='text-center'>
+                                                            <a id='<?php echo $tr['i_submenu'] ?>' menu="<?php echo $tr['i_menu'] ?>" perfil='<?php echo $tr['i_perfil'] ?>' class='btn btn-danger btn-sm text-white delete'>
+                                                                <i class='fa fa-trash-alt'></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+    <!-- MODAL AGREGAR ACCESO DATO-->
+    <div class="modal fade" id="modal-editar" data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">AGREGAR ACCESOS:&nbsp;</h5><b><?php echo $this->perfil ?></b>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Menú:</label>
+                            <select id="menu" tabindex="1" class="select2 form-control form-control-lg">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="form-label font-weight-bolder">Sub Menú:</label>
+                            <select id="submenu" tabindex="2" class="select2 form-control form-control-lg">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button id="btnguardar" type="button" class="btn btn-success btn-block">
+                                    <i class="fas fa-save"></i>
+                                    <b>Guardar</b></button>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="col-sm-6">
+                                <button id="btncancelar" type="button" class="btn btn-danger btn-block">
+                                    <i class="fas fa-ban"></i>
+                                    <b>Cancelar</b></button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>

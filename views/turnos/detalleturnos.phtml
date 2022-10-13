@@ -1,0 +1,354 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              ASIGNACION DE TURNOS</b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-clock"></i>
+                &nbsp;<strong>PERSONAL A ASIGNAR</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>AÑO:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="anhio" name="anhio" type="text" class="form-control" value="<?php echo $this->anhio; ?>">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>SEMANA:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="semana" name="semana" type="text" class="form-control" value="<?php echo $this->semana; ?>">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>DESCRIPCIÓN SEMANA:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="descripcion" name="descripcion" type="text" class="form-control" value="<?php echo $this->descripcion; ?>">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-2">
+                  <div class="form-group">
+                    <label>ID LOCAL:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="idlocal" name="semana" type="text" class="form-control" value="<?php echo $this->idlocal; ?>">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>DESCRIPCIÓN LOCAL:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="localdescr" name="descripcion" type="text" class="form-control" value="<?php echo $this->localdescr; ?>">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <button id="selectAll" type="button" class="btn btn-success btn-block"><i class="fas fa-check-square"></i>&nbsp;&nbsp;<b>Seleccionar / deseleccionar [todos]</b></button>
+                </div>
+                <br>
+                <br>
+                <div class="col-sm-12">
+                  <table id="example" class="row-border hover order-column table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>CHK</th>
+                        <th>DNI</th>
+                        <th>NOMBRES Y APELLIDOS</th>
+                        <th>APELLIDO PATERNO</th>
+                        <th>APELLIDO MATERNO</th>
+                        <th>CARGO</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->listapersonal)) { ?>
+                        <?php foreach ($this->listapersonal as $gr) { ?>
+                          <tr>
+                            <td class="text-center">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="cbx1" value="<?php echo $gr['v_dni'] ?>">
+                                <label class="form-check-label"></label>
+                              </div>
+                            </td>
+                            <td class="text-center"><?php echo $gr['v_dni'] ?></td>
+                            <td class="text-center"><?php echo $gr['v_nombres'] ?></td>
+                            <td class="text-center"><?php echo $gr['v_paterno'] ?></td>
+                            <td class="text-center"><?php echo $gr['v_materno'] ?></td>
+                            <td class="text-center"><?php echo $gr['v_cargo'] ?></td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="col-sm-3">
+                  <br>
+                  <div class="form-group">
+                    <button id="btnasignarhora" type="button" class="btn btn-success btn-block"><i class="fas fa-calendar-check"></i>&nbsp;&nbsp;<b>Asignar horario</b></button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </div>
+
+        </section>
+
+        <section class="col-lg-12 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fas fa-clock"></i>
+                &nbsp;<strong>PERSONAL CON TURNO ASIGNADO</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <table id="example1" class="row-border hover order-column table-bordered">
+                    <thead>
+                      <tr class="text-center">
+                        <th>DNI</th>
+                        <th>NOMBRES Y APELLIDOS</th>
+                        <th>LUNES</th>
+                        <th>MARTES</th>
+                        <th>MIERCOLES</th>
+                        <th>JUEVES</th>
+                        <th>VIERNES</th>
+                        <th>SABADO</th>
+                        <th>DOMINGO</th>
+                        <th>#</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php if (isset($this->turnosdetalles)) { ?>
+                        <?php foreach ($this->turnosdetalles as $td) { ?>
+                          <tr>
+                            <td class="text-center"><?php echo $td['v_dni'] ?></td>
+                            <td class="text-left"><?php echo $td['v_pernombres'] ?></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_lunes'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_martes'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_miercoles'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_jueves'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_viernes'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_sabado'] ?></span></td>
+                            <td class="text-center"><span class="badge bg-primary"><?php echo $td['v_domingo'] ?></span></td>
+                            <td class='text-center'>
+                              <a id="<?php echo $td['v_dni'] ?>" vdni="<?php echo $td['v_dni'] ?>" vnombre="<?php echo $td['v_pernombres'] ?>" class='btn btn-danger btn-sm text-white delete'><i class='fa fa-trash-alt'></i></a>
+                            </td>
+                          </tr>
+                        <?php } ?>
+                      <?php } ?>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- MODAL ASIGNAR TURNO-->
+<div class="modal fade" id="modal-agregar" data-backdrop="static">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title col-11 text-center"><b>ASIGNAR HORAS SEMANAL</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <!--INGRESO DE LA HORA INICIO Y FIN-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-inicio">HORA INICIO (HH:mm):</label>
+              <input id="hora-inicio" type="time" class="form-control" autocomplete="off">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="hora-fin">HORA FIN (HH:mm):</label>
+              <input id="hora-fin" type="time" class="form-control" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <!--INGRESO TOLERANCIA Y ZONA HORARIA-->
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="tolerancia">TOLERANCIA (HH:mm):</label>
+              <input id="tolerancia" type="time" class="form-control" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <!--LUNES-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="lunesbox" name="checks[]" class="form-check-input" type="checkbox" value="L">
+              <label class="form-check-label">Lunes</label>
+            </div>
+          </div>
+        </div>
+
+        <!--MARTES-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="martesbox" name="checks[]" class="form-check-input" type="checkbox" value="M">
+              <label class="form-check-label">Martes</label>
+            </div>
+          </div>
+        </div>
+
+        <!--MIERCOLES-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="miercolesbox" name="checks[]" class="form-check-input" type="checkbox" value="X">
+              <label class="form-check-label">Miércoles</label>
+            </div>
+          </div>
+        </div>
+
+        <!--JUEVES-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="juevesbox" name="checks[]" class="form-check-input" type="checkbox" value="J">
+              <label class="form-check-label">Jueves</label>
+            </div>
+          </div>
+        </div>
+
+        <!--VIERNES-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="viernesbox" name="checks[]" class="form-check-input" type="checkbox" value="V">
+              <label class="form-check-label">Viernes</label>
+            </div>
+          </div>
+        </div>
+
+        <!--SABADO-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="sabadobox" name="checks[]" class="form-check-input" type="checkbox" value="S">
+              <label class="form-check-label">Sábado</label>
+            </div>
+          </div>
+        </div>
+
+        <!--DOMINGO-->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-check">
+              <input id="domingobox" name="checks[]" class="form-check-input" type="checkbox" value="D">
+              <label class="form-check-label">Domingo</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <br>
+          <div class="row">
+            <div class="col-sm-6">
+              <button id="btn-registrar" type="button" class="btn btn-success btn-block"><b>Registrar</b></button>
+            </div>
+            <br>
+            <br>
+            <div class="col-sm-6">
+              <button id="btn-cancelar" type="button" class="btn btn-danger btn-block"><b>Cancelar</b></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

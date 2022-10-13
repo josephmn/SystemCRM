@@ -1,0 +1,237 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+                    <h1 style="color:gray"><b>
+                            <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                                <?php if ($this->_controlador == $menu['v_link']) {
+                                    echo strtoupper($menu['v_nombre']);
+                                } else {
+                                    '';
+                                } ?>
+                            <?php } ?></b>
+                    </h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <section class="col-lg-8 connectedSortable">
+                    <!-- video -->
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="timeline-body">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0HYDrSr1Baw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <!-- Misión -->
+                        <section class="col-lg-4 connectedSortable">
+
+                            <div class="card">
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="image">
+                                            <img class="image__img" src="<?php echo BASE_URL ?>public/dist/img/home/Mision.png">
+                                            <div class="image__overlay image__overlay--primary">
+                                                <p class="image__description">
+                                                    Nos conectamos a la vida de las personas a través de productos naturales y saludables. Nos apoyamos en la calidez de nuestros colaboradores, quienes a través de su espíritu innovador y en armonía con el medio ambiente, son capaces de brindar a los mercados, las mejores experiencias en bebidas y alimentos.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <!-- Visión -->
+                        <section class="col-lg-4 connectedSortable">
+
+                            <div class="card">
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="image">
+                                            <img class="image__img2" src="<?php echo BASE_URL ?>public/dist/img/home/Vision.png">
+                                            <div class="image__overlay2 image__overlay2--primary">
+                                                <p class="image__description2">
+                                                    Ser reconocido mundialmente como el compañero diario que naturalmente activa tus emociones y creatividad.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <!-- Propósito -->
+                        <section class="col-lg-4 connectedSortable">
+
+                            <div class="card">
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="image">
+                                            <img class="image__img2" src="<?php echo BASE_URL ?>public/dist/img/home/Proposito.png">
+                                            <div class="image__overlay2 image__overlay2--primary">
+                                                <p class="image__description2">
+                                                    Ofrecemos al mundo productos extraodinarios, entregando con pasión los mejor de nosotros, para llevar bienestar a las personas.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </section>
+
+                <!-- <section class="col-lg-6 connectedSortable">
+
+                    <div class="row">
+                        <section class="col-lg-6 connectedSortable">
+
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="boletin" class="image">
+                                            <img class="card-img-top" src="<?php //echo BASE_URL 
+                                                                            ?>public/dist/img/home/boletin.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+
+                        <section class="col-lg-6 connectedSortable">
+
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div id="pedidos" class="image">
+                                            <a href="<?php //echo BASE_URL 
+                                                        ?>public/dist/img/home/pedidos.pdf" target="_blank">
+                                                <img id="abrirpdf" class="card-img-top" src="<?php //echo BASE_URL 
+                                                                                                ?>public/dist/img/home/pedidos.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                    </div>
+
+                </section> -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- MODAL BOLETIN VERDUM-->
+<!-- <div class="modal fade" id="modal-boletin" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title col-11 text-center">BOLETIN VERDUM</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-12">
+
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>ID</th>
+                                    <th>NOMBRE</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php //if (isset($this->listarboletin)) { 
+                                ?>
+                                    <?php //foreach ($this->listarboletin as $inc) { 
+                                    ?>
+                                        <tr>
+                                            <td class="text-center"><?php //echo $inc['i_id'] 
+                                                                    ?></td>
+                                            <td class="text-left"><?php //echo $inc['v_nombre'] 
+                                                                    ?></td>
+                                            <td class='text-center'>
+                                                <a href="<?php //echo BASE_URL 
+                                                            ?><?php //echo $inc['v_ruta'] 
+                                                                ?>" target="_blank" class='btn btn-danger btn-sm text-white'><i class='fa fa-file-pdf'></i>&nbsp;&nbsp;PDF</a>
+                                            </td>
+                                        </tr>
+                                    <?php //} 
+                                    ?>
+                                <?php //} 
+                                ?>
+                            </tbody>
+                        </table>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- MODAL BOLETIN VERDUM-->
+<div class="modal fade" id="modal-cumple" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa-solid fa-cake-candles fa-beat" style="--fa-beat-scale: 2.0;"></i>
+                <h4 class="modal-title col-11 text-center"><b>FELIZ CUMPLEAÑOS</b></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="draw-img" style="border-radius: 10px; -webkit-border-radius: 10px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

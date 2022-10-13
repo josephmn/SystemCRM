@@ -1,0 +1,553 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0F9E6F37-F8B7-47D3-84B0-44C375261C1C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WSRecursos</RootNamespace>
+    <AssemblyName>WSRecursos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44316</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\PAWEB.pubxml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config" />
+    <Content Include="WSRecursos.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="conexion.cs" />
+    <Compile Include="Controlador\CCargo.cs" />
+    <Compile Include="Controlador\CListarDisenioNotificumpleTexto.cs" />
+    <Compile Include="Controlador\CListarNotificumpleTexto.cs" />
+    <Compile Include="Controlador\CListarNotificumpleanios.cs" />
+    <Compile Include="Controlador\CListarenviovacaciones.cs" />
+    <Compile Include="Controlador\CListaReportePagoVacaciones.cs" />
+    <Compile Include="Controlador\CListarTipoArchivos.cs" />
+    <Compile Include="Controlador\CListarCorreoBuzonsugerencia.cs" />
+    <Compile Include="Controlador\CListarBuzonsugerencia.cs" />
+    <Compile Include="Controlador\CConfiguracionCorreo.cs" />
+    <Compile Include="Controlador\CConsultaPaPersonal.cs" />
+    <Compile Include="Controlador\CControlRemoto.cs" />
+    <Compile Include="Controlador\CEvaluacionPersona.cs" />
+    <Compile Include="Controlador\CListadovacacionescumplejefe.cs" />
+    <Compile Include="Controlador\CListarDisenioTexto.cs" />
+    <Compile Include="Controlador\CListarConveniosTexto.cs" />
+    <Compile Include="Controlador\CListarConveniosEducativos.cs" />
+    <Compile Include="Controlador\CListarConvenios.cs" />
+    <Compile Include="Controlador\CGetInventario.cs" />
+    <Compile Include="Controlador\CListarPaNotificaciones.cs" />
+    <Compile Include="Controlador\CListarNotificaciones.cs" />
+    <Compile Include="Controlador\CListarTopeVentas.cs" />
+    <Compile Include="Controlador\CListarInventario.cs" />
+    <Compile Include="Controlador\CListarFeriado.cs" />
+    <Compile Include="Controlador\CGetMarcacion.cs" />
+    <Compile Include="Controlador\CListarcumpleaniosxdni.cs" />
+    <Compile Include="Controlador\CListarpagovacaciones.cs" />
+    <Compile Include="Controlador\CMantArchivosLegajo.cs" />
+    <Compile Include="Controlador\CMantPagovacaciones.cs" />
+    <Compile Include="Controlador\CMantNotificumpleaniosTexto.cs" />
+    <Compile Include="Controlador\CMantNotificumpleanios.cs" />
+    <Compile Include="Controlador\CMantInventario.cs" />
+    <Compile Include="Controlador\CMantLogCorreosCanaldenuncia.cs" />
+    <Compile Include="Controlador\CMantLogCorreosBuzonsugerencia.cs" />
+    <Compile Include="Controlador\CMantArchivos.cs" />
+    <Compile Include="Controlador\CMantNotificacionesPersonal.cs" />
+    <Compile Include="Controlador\CMantNotificaciones.cs" />
+    <Compile Include="Controlador\CMantVentaDetalle.cs" />
+    <Compile Include="Controlador\CMantVentaCabecera.cs" />
+    <Compile Include="Controlador\CMantLogCorreos.cs" />
+    <Compile Include="Controlador\CMantVacacioncumpleanios.cs" />
+    <Compile Include="Controlador\CMantMarcacion.cs" />
+    <Compile Include="Controlador\CMantMensajeMarcacion.cs" />
+    <Compile Include="Controlador\CMantControlRemoto.cs" />
+    <Compile Include="Controlador\CMantControlFlexTime.cs" />
+    <Compile Include="Controlador\CMantFeriado.cs" />
+    <Compile Include="Controlador\CMantTablaRemoto.cs" />
+    <Compile Include="Controlador\CMantTablaFlexTime.cs" />
+    <Compile Include="Controlador\CControlFlexTime.cs" />
+    <Compile Include="Controlador\CTablaRemoto.cs" />
+    <Compile Include="Controlador\CTablaFlexTime.cs" />
+    <Compile Include="Controlador\CListarFlexTime.cs" />
+    <Compile Include="Controlador\CMantConveniosEducativos.cs" />
+    <Compile Include="Controlador\CMantConveniosTexto.cs" />
+    <Compile Include="Controlador\CMantConvenios.cs" />
+    <Compile Include="Controlador\CMantFlexTime.cs" />
+    <Compile Include="Controlador\CMantRegPersonal.cs" />
+    <Compile Include="Controlador\CSubArea.cs" />
+    <Compile Include="Controlador\COcupacion.cs" />
+    <Compile Include="Controlador\CTipoContrato.cs" />
+    <Compile Include="Controlador\CArea.cs" />
+    <Compile Include="Controlador\CTipoPago.cs" />
+    <Compile Include="Controlador\CLocalTrabajo.cs" />
+    <Compile Include="Controlador\CEntidadFinanciera.cs" />
+    <Compile Include="Controlador\CTipoTrabajador.cs" />
+    <Compile Include="Controlador\CConsultaFinalistas.cs" />
+    <Compile Include="Controlador\CAsistenciadni.cs" />
+    <Compile Include="Controlador\CBoletadetalle.cs" />
+    <Compile Include="Controlador\CBoletacabecera.cs" />
+    <Compile Include="Controlador\CCentroCosto.cs" />
+    <Compile Include="Controlador\CCertificadoCts.cs" />
+    <Compile Include="Controlador\CConPerfiles.cs" />
+    <Compile Include="Controlador\CConPerfilesAccess.cs" />
+    <Compile Include="Controlador\CCuenta.cs" />
+    <Compile Include="Controlador\CDepartamento.cs" />
+    <Compile Include="Controlador\CDistrito.cs" />
+    <Compile Include="Controlador\CEmpresa.cs" />
+    <Compile Include="Controlador\CGrupoArea.cs" />
+    <Compile Include="Controlador\CGrupoCargo.cs" />
+    <Compile Include="Controlador\CIndAusentismo.cs" />
+    <Compile Include="Controlador\CIndAusentismonorem.cs" />
+    <Compile Include="Controlador\CIndAusentismorem.cs" />
+    <Compile Include="Controlador\CIndAusentismoxArea.cs" />
+    <Compile Include="Controlador\CIndAusentismoxCargo.cs" />
+    <Compile Include="Controlador\CIndDotacion.cs" />
+    <Compile Include="Controlador\CIndDotacionArea.cs" />
+    <Compile Include="Controlador\CIndDotacionCargo.cs" />
+    <Compile Include="Controlador\CIndHE.cs" />
+    <Compile Include="Controlador\CIndHeadcount.cs" />
+    <Compile Include="Controlador\CIndHeadcountArea.cs" />
+    <Compile Include="Controlador\CIndHeadcountCargo.cs" />
+    <Compile Include="Controlador\CIndHESoles.cs" />
+    <Compile Include="Controlador\CIndHExMontos.cs" />
+    <Compile Include="Controlador\CIndHExPersona.cs" />
+    <Compile Include="Controlador\CCivil.cs" />
+    <Compile Include="Controlador\CActualizacionDatos.cs" />
+    <Compile Include="Controlador\CMantUserPassword.cs" />
+    <Compile Include="Controlador\CMantPeriodosBoletas.cs" />
+    <Compile Include="Controlador\CPeriodosBoletas.cs" />
+    <Compile Include="Controlador\CListarAsistentes.cs" />
+    <Compile Include="Controlador\CListarJefes.cs" />
+    <Compile Include="Controlador\CListarCalendario.cs" />
+    <Compile Include="Controlador\CListarCTS.cs" />
+    <Compile Include="Controlador\CListarBoletin.cs" />
+    <Compile Include="Controlador\CListadoDocumentosPersonal.cs" />
+    <Compile Include="Controlador\CCombodocumentos.cs" />
+    <Compile Include="Controlador\CListarUsuarios.cs" />
+    <Compile Include="Controlador\CListatipodocumento.cs" />
+    <Compile Include="Controlador\CListarToast.cs" />
+    <Compile Include="Controlador\CListarSweetAlert.cs" />
+    <Compile Include="Controlador\CListarUtilidades.cs" />
+    <Compile Include="Controlador\CListarcronogramaxmes.cs" />
+    <Compile Include="Controlador\CListadocontrolvacacionesjefe.cs" />
+    <Compile Include="Controlador\CGestionVacaciones.cs" />
+    <Compile Include="Controlador\CConsultarCronograma.cs" />
+    <Compile Include="Controlador\CConsultaVacacionedni.cs" />
+    <Compile Include="Controlador\CListadoEstadocronograma.cs" />
+    <Compile Include="Controlador\CImpVacacioncronograma.cs" />
+    <Compile Include="Controlador\CConsultarmeses.cs" />
+    <Compile Include="Controlador\CCertificadoUtilidades.cs" />
+    <Compile Include="Controlador\CListarBoletapago.cs" />
+    <Compile Include="Controlador\CMantLogCTS.cs" />
+    <Compile Include="Controlador\CMantLogUtilidades.cs" />
+    <Compile Include="Controlador\CMantMeses.cs" />
+    <Compile Include="Controlador\CMantLogBoletas.cs" />
+    <Compile Include="Controlador\CMantJefeAsistente.cs" />
+    <Compile Include="Controlador\CMantUsuario.cs" />
+    <Compile Include="Controlador\CMantPerfiles.cs" />
+    <Compile Include="Controlador\CMantPerfilesAccesos.cs" />
+    <Compile Include="Controlador\CMantVacacionesanhio.cs" />
+    <Compile Include="Controlador\CMantDocumentos.cs" />
+    <Compile Include="Controlador\CTurnoDetalle.cs" />
+    <Compile Include="Controlador\CVerificardocumento.cs" />
+    <Compile Include="Controlador\CListarmeses.cs" />
+    <Compile Include="Controlador\CMantFirma.cs" />
+    <Compile Include="Controlador\CMantCronograma.cs" />
+    <Compile Include="Controlador\CMantVacaciones.cs" />
+    <Compile Include="Controlador\CMantPassword.cs" />
+    <Compile Include="Controlador\CMantFotoPerfil.cs" />
+    <Compile Include="Controlador\CMantPerfilPersonal.cs" />
+    <Compile Include="Controlador\CSolicitudvacaciones.cs" />
+    <Compile Include="Controlador\CMenu.cs" />
+    <Compile Include="Controlador\CSubMenu.cs" />
+    <Compile Include="Controlador\CLogin.cs" />
+    <Compile Include="Controlador\CLocal.cs" />
+    <Compile Include="Controlador\CMantLocal.cs" />
+    <Compile Include="Controlador\CSolicitudComision.cs" />
+    <Compile Include="Controlador\CMantTurnoDetalle.cs" />
+    <Compile Include="Controlador\CMantTurno.cs" />
+    <Compile Include="Controlador\CMantZona.cs" />
+    <Compile Include="Controlador\CMantIndicadorPersonal.cs" />
+    <Compile Include="Controlador\CPais.cs" />
+    <Compile Include="Controlador\CPersonal.cs" />
+    <Compile Include="Controlador\CProvincia.cs" />
+    <Compile Include="Controlador\CSemana.cs" />
+    <Compile Include="Controlador\CAsistencia.cs" />
+    <Compile Include="Controlador\CBoletapago.cs" />
+    <Compile Include="Controlador\CConsultaPerfil.cs" />
+    <Compile Include="Controlador\CRecuperarCorreo.cs" />
+    <Compile Include="Controlador\CListarvacacionesxdni.cs" />
+    <Compile Include="Controlador\CTurno.cs" />
+    <Compile Include="Controlador\CComision.cs" />
+    <Compile Include="Controlador\CZona.cs" />
+    <Compile Include="Entidad\ECargo.cs" />
+    <Compile Include="Entidad\EListarenviovacaciones.cs" />
+    <Compile Include="Entidad\EListaReportePagoVacaciones.cs" />
+    <Compile Include="Entidad\EListarpagovacaciones.cs" />
+    <Compile Include="Entidad\EListarDisenioNotificumpleTexto.cs" />
+    <Compile Include="Entidad\EListarNotificumpleTexto.cs" />
+    <Compile Include="Entidad\EListarNotificumpleanios.cs" />
+    <Compile Include="Entidad\EListarTipoArchivos.cs" />
+    <Compile Include="Entidad\EListarCorreoBuzonsugerencia.cs" />
+    <Compile Include="Entidad\EListarBuzonsugerencia.cs" />
+    <Compile Include="Entidad\EConfiguracionCorreo.cs" />
+    <Compile Include="Entidad\EConsultaPaPersonal.cs" />
+    <Compile Include="Entidad\EControlRemoto.cs" />
+    <Compile Include="Entidad\EEvaluacionPersona.cs" />
+    <Compile Include="Entidad\EEvaluacionPersonaPdf.cs" />
+    <Compile Include="Entidad\EListadovacacionescumplejefe.cs" />
+    <Compile Include="Entidad\EListarDisenioTexto.cs" />
+    <Compile Include="Entidad\EListarConveniosTexto.cs" />
+    <Compile Include="Entidad\EListarConveniosEducativos.cs" />
+    <Compile Include="Entidad\EListarConvenios.cs" />
+    <Compile Include="Entidad\EControlFlexTime.cs" />
+    <Compile Include="Entidad\EGetInventario.cs" />
+    <Compile Include="Entidad\EListarPaNotificaciones.cs" />
+    <Compile Include="Entidad\EListarNotificaciones.cs" />
+    <Compile Include="Entidad\EListarTopeVentas.cs" />
+    <Compile Include="Entidad\EListarInventario.cs" />
+    <Compile Include="Entidad\EListarFeriado.cs" />
+    <Compile Include="Entidad\EListarcumpleaniosxdni.cs" />
+    <Compile Include="Entidad\ETablaRemoto.cs" />
+    <Compile Include="Entidad\ETablaFlexTime.cs" />
+    <Compile Include="Entidad\EListarFlexTime.cs" />
+    <Compile Include="Entidad\ESubArea.cs" />
+    <Compile Include="Entidad\EAsistenciadni.cs" />
+    <Compile Include="Entidad\EBoletadetalle.cs" />
+    <Compile Include="Entidad\EBoletacabecera.cs" />
+    <Compile Include="Entidad\ECentroCosto.cs" />
+    <Compile Include="Entidad\ECertificadoCts.cs" />
+    <Compile Include="Entidad\EOcupacion.cs" />
+    <Compile Include="Entidad\EArea.cs" />
+    <Compile Include="Entidad\ETipoPago.cs" />
+    <Compile Include="Entidad\ETipoContrato.cs" />
+    <Compile Include="Entidad\ELocalTrabajo.cs" />
+    <Compile Include="Entidad\EEntidadFinanciera.cs" />
+    <Compile Include="Entidad\ETipoTrabajador.cs" />
+    <Compile Include="Entidad\EConPerfiles.cs" />
+    <Compile Include="Entidad\EConPerfilesAccesos.cs" />
+    <Compile Include="Entidad\EConsultaFinalistas.cs" />
+    <Compile Include="Entidad\ECuenta.cs" />
+    <Compile Include="Entidad\EDepartamento.cs" />
+    <Compile Include="Entidad\EDistrito.cs" />
+    <Compile Include="Entidad\EEmpresa.cs" />
+    <Compile Include="Entidad\EGrupoArea.cs" />
+    <Compile Include="Entidad\EGrupoCargo.cs" />
+    <Compile Include="Entidad\EIndAusentismo.cs" />
+    <Compile Include="Entidad\EIndAusentismonorem.cs" />
+    <Compile Include="Entidad\EIndAusentismorem.cs" />
+    <Compile Include="Entidad\EIndAusentismoxArea.cs" />
+    <Compile Include="Entidad\EIndAusentismoxCargo.cs" />
+    <Compile Include="Entidad\EIndDotacion.cs" />
+    <Compile Include="Entidad\EIndDotacionArea.cs" />
+    <Compile Include="Entidad\EIndDotacionCargo.cs" />
+    <Compile Include="Entidad\EIndHE.cs" />
+    <Compile Include="Entidad\EIndHeadcount.cs" />
+    <Compile Include="Entidad\EIndHeadcountArea.cs" />
+    <Compile Include="Entidad\EIndHeadcountCargo.cs" />
+    <Compile Include="Entidad\EIndHESoles.cs" />
+    <Compile Include="Entidad\EIndHExMontos.cs" />
+    <Compile Include="Entidad\EIndHExPersona.cs" />
+    <Compile Include="Entidad\ECivil.cs" />
+    <Compile Include="Entidad\EPeriodosBoletas.cs" />
+    <Compile Include="Entidad\EListarAsistentes.cs" />
+    <Compile Include="Entidad\EListarJefes.cs" />
+    <Compile Include="Entidad\EListarCalendario.cs" />
+    <Compile Include="Entidad\EListarCTS.cs" />
+    <Compile Include="Entidad\EListarBoletin.cs" />
+    <Compile Include="Entidad\EListadoDocumentosPersonal.cs" />
+    <Compile Include="Entidad\ECombodocumentos.cs" />
+    <Compile Include="Entidad\EListarUsuarios.cs" />
+    <Compile Include="Entidad\EListatipodocumento.cs" />
+    <Compile Include="Entidad\EListarToast.cs" />
+    <Compile Include="Entidad\EListarSweetAlert.cs" />
+    <Compile Include="Entidad\EListarUtilidades.cs" />
+    <Compile Include="Entidad\EListarcronogramaxmes.cs" />
+    <Compile Include="Entidad\EConsultarCronograma.cs" />
+    <Compile Include="Entidad\EConsultaVacacionedni.cs" />
+    <Compile Include="Entidad\EListadoEstadocronograma.cs" />
+    <Compile Include="Entidad\EImpVacacioncronograma.cs" />
+    <Compile Include="Entidad\EConsultarmeses.cs" />
+    <Compile Include="Entidad\ECertificadoUtilidades.cs" />
+    <Compile Include="Entidad\EListarBoletapago.cs" />
+    <Compile Include="Entidad\ETurnoDetalle.cs" />
+    <Compile Include="Entidad\EVerificardocumento.cs" />
+    <Compile Include="Entidad\EListarmeses.cs" />
+    <Compile Include="Entidad\EListadocontrolvacacionesjefe.cs" />
+    <Compile Include="Entidad\ESubMenu.cs" />
+    <Compile Include="Entidad\EMenu.cs" />
+    <Compile Include="Entidad\ELogin.cs" />
+    <Compile Include="Entidad\ELocal.cs" />
+    <Compile Include="Entidad\EMantenimiento.cs" />
+    <Compile Include="Entidad\EPais.cs" />
+    <Compile Include="Entidad\EPersonal.cs" />
+    <Compile Include="Entidad\EProvincia.cs" />
+    <Compile Include="Entidad\ESemana.cs" />
+    <Compile Include="Entidad\EAsistencia.cs" />
+    <Compile Include="Entidad\EBoletapago.cs" />
+    <Compile Include="Entidad\EConsultaPerfil.cs" />
+    <Compile Include="Entidad\ERecuperarCorreo.cs" />
+    <Compile Include="Entidad\EListarvacacionesxdni.cs" />
+    <Compile Include="Entidad\ETurno.cs" />
+    <Compile Include="Entidad\EComision.cs" />
+    <Compile Include="Entidad\EZona.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vista\VCargo.cs" />
+    <Compile Include="Vista\VListarDisenioNotificumpleTexto.cs" />
+    <Compile Include="Vista\VListarNotificumpleTexto.cs" />
+    <Compile Include="Vista\VListarNotificumpleanios.cs" />
+    <Compile Include="Vista\VListarenviovacaciones.cs" />
+    <Compile Include="Vista\VListaReportePagoVacaciones.cs" />
+    <Compile Include="Vista\VListarTipoArchivos.cs" />
+    <Compile Include="Vista\VListarCorreoBuzonsugerencia.cs" />
+    <Compile Include="Vista\VListarBuzonsugerencia.cs" />
+    <Compile Include="Vista\VConfiguracionCorreo.cs" />
+    <Compile Include="Vista\VConsultaPaPersonal.cs" />
+    <Compile Include="Vista\VControlRemoto.cs" />
+    <Compile Include="Vista\VEvaluacionPersona.cs" />
+    <Compile Include="Vista\VListadovacacionescumplejefe.cs" />
+    <Compile Include="Vista\VListarDisenioTexto.cs" />
+    <Compile Include="Vista\VListarConveniosTexto.cs" />
+    <Compile Include="Vista\VListarConveniosEducativos.cs" />
+    <Compile Include="Vista\VListarConvenios.cs" />
+    <Compile Include="Vista\VGetInventario.cs" />
+    <Compile Include="Vista\VListarPaNotificaciones.cs" />
+    <Compile Include="Vista\VListarNotificaciones.cs" />
+    <Compile Include="Vista\VListarTopeVentas.cs" />
+    <Compile Include="Vista\VListarInventario.cs" />
+    <Compile Include="Vista\VListarFeriado.cs" />
+    <Compile Include="Vista\VGetMarcacion.cs" />
+    <Compile Include="Vista\VListarcumpleaniosxdni.cs" />
+    <Compile Include="Vista\VListarpagovacaciones.cs" />
+    <Compile Include="Vista\VMantArchivosLegajo.cs" />
+    <Compile Include="Vista\VMantPagovacaciones.cs" />
+    <Compile Include="Vista\VMantNotificumpleaniosTexto.cs" />
+    <Compile Include="Vista\VMantNotificumpleanios.cs" />
+    <Compile Include="Vista\VMantInventario.cs" />
+    <Compile Include="Vista\VMantLogCorreosCanaldenuncia.cs" />
+    <Compile Include="Vista\VMantLogCorreosBuzonsugerencia.cs" />
+    <Compile Include="Vista\VMantArchivos.cs" />
+    <Compile Include="Vista\VMantNotificacionesPersonal.cs" />
+    <Compile Include="Vista\VMantNotificaciones.cs" />
+    <Compile Include="Vista\VMantVentaDetalle.cs" />
+    <Compile Include="Vista\VMantVentaCabecera.cs" />
+    <Compile Include="Vista\VMantLogCorreos.cs" />
+    <Compile Include="Vista\VMantVacacioncumpleanios.cs" />
+    <Compile Include="Vista\VMantMarcacion.cs" />
+    <Compile Include="Vista\VMantMensajeMarcacion.cs" />
+    <Compile Include="Vista\VMantControlRemoto.cs" />
+    <Compile Include="Vista\VMantControlFlexTime.cs" />
+    <Compile Include="Vista\VMantFeriado.cs" />
+    <Compile Include="Vista\VMantTablaRemoto.cs" />
+    <Compile Include="Vista\VMantTablaFlexTime.cs" />
+    <Compile Include="Vista\VControlFlexTime.cs" />
+    <Compile Include="Vista\VTablaRemoto.cs" />
+    <Compile Include="Vista\VTablaFlexTime.cs" />
+    <Compile Include="Vista\VListarFlexTime.cs" />
+    <Compile Include="Vista\VMantConveniosEducativos.cs" />
+    <Compile Include="Vista\VMantConveniosTexto.cs" />
+    <Compile Include="Vista\VMantConvenios.cs" />
+    <Compile Include="Vista\VMantFlexTime.cs" />
+    <Compile Include="Vista\VMantRegPersonal.cs" />
+    <Compile Include="Vista\VSubArea.cs" />
+    <Compile Include="Vista\VAsistenciadni.cs" />
+    <Compile Include="Vista\VBoletadetalle.cs" />
+    <Compile Include="Vista\VBoletacabecera.cs" />
+    <Compile Include="Vista\VCentroCosto.cs" />
+    <Compile Include="Vista\VCertificadoCts.cs" />
+    <Compile Include="Vista\VCivil.cs" />
+    <Compile Include="Vista\VConPerfiles.cs" />
+    <Compile Include="Vista\VConPerfilesAccesos.cs" />
+    <Compile Include="Vista\VConsultaFinalistas.cs" />
+    <Compile Include="Vista\VCuenta.cs" />
+    <Compile Include="Vista\VDepartamento.cs" />
+    <Compile Include="Vista\VDistrito.cs" />
+    <Compile Include="Vista\VEmpresa.cs" />
+    <Compile Include="Vista\VGrupoArea.cs" />
+    <Compile Include="Vista\VGrupoCargo.cs" />
+    <Compile Include="Vista\VIndAusentismo.cs" />
+    <Compile Include="Vista\VIndAusentismonorem.cs" />
+    <Compile Include="Vista\VIndAusentismorem.cs" />
+    <Compile Include="Vista\VIndAusentismoxArea.cs" />
+    <Compile Include="Vista\VIndAusentismoxCargo.cs" />
+    <Compile Include="Vista\VIndDotacion.cs" />
+    <Compile Include="Vista\VIndDotacionArea.cs" />
+    <Compile Include="Vista\VIndDotacionCargo.cs" />
+    <Compile Include="Vista\VIndHE.cs" />
+    <Compile Include="Vista\VIndHeadcount.cs" />
+    <Compile Include="Vista\VIndHeadcountArea.cs" />
+    <Compile Include="Vista\VIndHeadcountCargo.cs" />
+    <Compile Include="Vista\VIndHESoles.cs" />
+    <Compile Include="Vista\VIndHExMontos.cs" />
+    <Compile Include="Vista\VIndHExPersona.cs" />
+    <Compile Include="Vista\VOcupacion.cs" />
+    <Compile Include="Vista\VTipoContrato.cs" />
+    <Compile Include="Vista\VArea.cs" />
+    <Compile Include="Vista\VTipoPago.cs" />
+    <Compile Include="Vista\VLocalTrabajo.cs" />
+    <Compile Include="Vista\VEntidadFinanciera.cs" />
+    <Compile Include="Vista\VTipoTrabajador.cs" />
+    <Compile Include="Vista\VGestionVacaciones.cs" />
+    <Compile Include="Vista\VListadocontrolvacacionesjefe.cs" />
+    <Compile Include="Vista\VConsultarCronograma.cs" />
+    <Compile Include="Vista\VConsultaVacacionedni.cs" />
+    <Compile Include="Vista\VListadoEstadocronograma.cs" />
+    <Compile Include="Vista\VImpVacacioncronograma.cs" />
+    <Compile Include="Vista\VConsultarmeses.cs" />
+    <Compile Include="Vista\VCertificadoUtilidades.cs" />
+    <Compile Include="Vista\VActualizacionDatos.cs" />
+    <Compile Include="Vista\VMantUserPassword.cs" />
+    <Compile Include="Vista\VMantPeriodosBoletas.cs" />
+    <Compile Include="Vista\VPeriodosBoletas.cs" />
+    <Compile Include="Vista\VListarAsistentes.cs" />
+    <Compile Include="Vista\VListarJefes.cs" />
+    <Compile Include="Vista\VListarCalendario.cs" />
+    <Compile Include="Vista\VListarCTS.cs" />
+    <Compile Include="Vista\VListarBoletin.cs" />
+    <Compile Include="Vista\VListadoDocumentosPersonal.cs" />
+    <Compile Include="Vista\VCombodocumentos.cs" />
+    <Compile Include="Vista\VListarUsuarios.cs" />
+    <Compile Include="Vista\VListatipodocumento.cs" />
+    <Compile Include="Vista\VListarToast.cs" />
+    <Compile Include="Vista\VListarSweetAlert.cs" />
+    <Compile Include="Vista\VListarUtilidades.cs" />
+    <Compile Include="Vista\VListarBoletapago.cs" />
+    <Compile Include="Vista\VMantLogCTS.cs" />
+    <Compile Include="Vista\VMantLogUtilidades.cs" />
+    <Compile Include="Vista\VMantMeses.cs" />
+    <Compile Include="Vista\VMantLogBoletas.cs" />
+    <Compile Include="Vista\VMantJefeAsistente.cs" />
+    <Compile Include="Vista\VMantUsuario.cs" />
+    <Compile Include="Vista\VMantPerfiles.cs" />
+    <Compile Include="Vista\VMantPerfilesAccesos.cs" />
+    <Compile Include="Vista\VMantTurnoDetalle.cs" />
+    <Compile Include="Vista\VMantVacacionesanhio.cs" />
+    <Compile Include="Vista\VMantDocumentos.cs" />
+    <Compile Include="Vista\VTurnoDetalle.cs" />
+    <Compile Include="Vista\VVerificardocumento.cs" />
+    <Compile Include="Vista\VListarmeses.cs" />
+    <Compile Include="Vista\VListarcronogramaxmes.cs" />
+    <Compile Include="Vista\VMantFirma.cs" />
+    <Compile Include="Vista\VMantFotoPerfil.cs" />
+    <Compile Include="Vista\VMantPassword.cs" />
+    <Compile Include="Vista\VMantPerfilPersonal.cs" />
+    <Compile Include="Vista\VMantCronograma.cs" />
+    <Compile Include="Vista\VMantVacaciones.cs" />
+    <Compile Include="Vista\VSolicitudvacaciones.cs" />
+    <Compile Include="Vista\VSubMenu.cs" />
+    <Compile Include="Vista\VMenu.cs" />
+    <Compile Include="Vista\VLogin.cs" />
+    <Compile Include="Vista\VLocal.cs" />
+    <Compile Include="Vista\VMantLocal.cs" />
+    <Compile Include="Vista\VSolicitudComision.cs" />
+    <Compile Include="Vista\VMantTurno.cs" />
+    <Compile Include="Vista\VMantZona.cs" />
+    <Compile Include="Vista\VMantIndicadorPersonal.cs" />
+    <Compile Include="Vista\VPais.cs" />
+    <Compile Include="Vista\VPersonal.cs" />
+    <Compile Include="Vista\VProvincia.cs" />
+    <Compile Include="Vista\VSemana.cs" />
+    <Compile Include="Vista\VAsistencia.cs" />
+    <Compile Include="Vista\VBoletapago.cs" />
+    <Compile Include="Vista\VConsultaPerfil.cs" />
+    <Compile Include="Vista\VRecuperarCorreo.cs" />
+    <Compile Include="Vista\VListarvacacionesxdni.cs" />
+    <Compile Include="Vista\VTurno.cs" />
+    <Compile Include="Vista\VComision.cs" />
+    <Compile Include="Vista\VZona.cs" />
+    <Compile Include="WSRecursos.asmx.cs">
+      <DependentUpon>WSRecursos.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50959</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44316/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

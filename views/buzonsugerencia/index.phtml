@@ -1,0 +1,139 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 style="color:gray"><b>BUZÓN DE SUGERENCIA</b>
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-envelope"></i>
+                                &nbsp;<strong>ENVIAR CORREO</strong>
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>PARA:</label>
+                                        <div class="input-group" data-target-input="nearest">
+                                            <input id="envio_para" type="text" value="comunicaciones@verdum.com" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>DE:</label>
+                                        <div class="input-group" data-target-input="nearest">
+                                            <input id="envio_de" type="text" value="<?php echo $_SESSION['correo'] ?>" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>NOMBRE:</label>
+                                        <div class="input-group" data-target-input="nearest">
+                                            <input id="nombre" type="text" value="<?php echo $_SESSION['nombre'] ?>" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>ASUNTO:</label>
+                                        <select id="asunto" class="form-control">
+                                            <option value="0" selected disabled>-- SELECCIONE --</option>
+                                            <?php echo $this->filascombo ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label class="form-label font-weight-bolder">ESCRIBE TU SUGERENCIA O IDEA DE INNOVACIÓN <mark>(escribe lo más detallado posible)</mark>:</label>
+                                    <textarea id="descripcion" class="form-control" rows="10" placeholder="escribir detalles..." autocomplete="off"></textarea>
+                                    <!-- <textarea id="descripcion" class="form-control" onpaste="caracteres_descripcion();" onkeyup="caracteres_descripcion();" rows="8" placeholder="escribir detalles..." autocomplete="off"></textarea> -->
+                                    <!-- <div class="text" id="res">
+                                        <p><b>0 caractere/s, te quedan 2000</b></p>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <button type="button" id="btn-enviar" class="btn btn-success btn-block"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;<b>ENVIAR CORREO</b></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card card-gray">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-envelope-open-text"></i>
+                                &nbsp;<strong>CORREOS ENVIADOS</strong>
+                            </h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-sm-12">
+                                    <table id="example1" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>CODIGO</th>
+                                                <th>TICKET</th>
+                                                <th>ENVIADO A</th>
+                                                <th>FECHA Y HORA</th>
+                                                <th>ASUNTO</th>
+                                                <th>ESTADO</th>
+                                                <th>MENSAJE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php echo $this->filas ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </section>
+
+</div>

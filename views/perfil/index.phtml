@@ -1,0 +1,356 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <!-- <h1 class="m-0 text-dark">RECURSOS HUMANOS | VERDUM PERÚ S.A.C.</h1> -->
+          <h1 style="color:gray"><b>
+              <?php foreach ($_SESSION['menus'] as $menu) { ?>
+                <?php if ($this->_controlador == $menu['v_link']) {
+                  echo strtoupper($menu['v_nombre']);
+                } else {
+                  '';
+                } ?>
+              <?php } ?></b>
+          </h1>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <!-- Main row -->
+
+      <div class="row">
+        <section class="col-lg-4 connectedSortable">
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-pen-square"></i>
+                &nbsp;<strong>FOTO DE PERFIL</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="image">
+                    <img class="card-img-top" src="<?php echo BASE_URL . $_SESSION['foto'] ?>">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <p></p>
+                    <p>Cargar Imagen (formato jpg o png peso max. 1MB)</p>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="archivo" class="custom-file-input" id="archivo">
+                        <label class="custom-file-label" for="exampleInputFile">Cargar archivo...</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button type="button" id="btnsubir" name="btnsubir" class="btn btn-success btn-block"><b>SUBIR FOTO</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- </form> -->
+
+          </div>
+        </section>
+
+        <section class="col-lg-8 connectedSortable">
+
+          <div class="card card-gray">
+            <div class="card-header">
+              <h3 class="card-title">
+                <i class="fas fa-pen-square"></i>
+                &nbsp;<strong>DATOS PERSONALES</strong>
+              </h3>
+              <div class="card-tools">
+              </div>
+            </div>
+
+            <div class="card-body">
+
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>DNI / CE.:</label>
+                    <div class="input-group date" id="documento" data-target-input="nearest">
+                      <input id="dni" name="dni" type="text" class="form-control" value="<?php echo $_SESSION['dni'] ?>" data-target="#documento" placeholder="Documento" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label>NOMBRES Y APELLIDOS:</label>
+                    <div class="input-group date" id="nombres" data-target-input="nearest">
+                      <input id="nombre" name="nombre" type="text" class="form-control" value="<?php echo $_SESSION['nombre'] ?>" data-target="#nombres" placeholder="Nombres completos" autocomplete="off">
+                      <div class="input-group-append">
+                        <div class="input-group-text"><i class="fas fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>FECHA NACIMIENTO:</label>
+                    <div class="input-group date" data-target-input="nearest">
+                      <input id="fnacimiento" name="fnacimiento" type="text" class="form-control datetimepicker-input" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                                echo $this->respuestaperfil[0]['d_fnacimiento'];
+                                                                                                                              } else {
+                                                                                                                                echo date("d/m/Y");
+                                                                                                                              }; ?>" placeholder="dd/mm/aaaa" autocomplete="off">
+                      <div class="input-group-append" data-target="#fnacimiento" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>ESTADO CIVIL</label>
+                    <select class="form-control" id="civil" name="civil">
+                      <?php foreach ($this->datacivil as $dc) { ?>
+                        <option value="<?php echo $dc['i_id']; ?>" <?php if (count($this->respuestaperfil) > 0 && $dc['i_id'] == $this->respuestaperfil[0]['i_civil']) {
+                                                                      echo 'selected="selected"';
+                                                                    } else {
+                                                                      echo '';
+                                                                    }; ?>><?php echo $dc['v_nombre']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>N° CELULAR:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="celular" name="celular" type="text" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                    echo $this->respuestaperfil[0]['v_celular'];
+                                                                                                  } else {
+                                                                                                    echo '';
+                                                                                                  }; ?>" onkeypress='return validaNumericos(event)' placeholder="celular...(999888777)" autocomplete="off">
+                      <div class="input-group-append" data-target="#correo">
+                        <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>CORREO PERSONAL:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="correo" name="correo" type="email" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                  echo $this->respuestaperfil[0]['v_correo'];
+                                                                                                } else {
+                                                                                                  echo '';
+                                                                                                }; ?>" aria-describedby="emailHelp" placeholder="abc@dominio.xx..." autocomplete="off">
+                      <div class="input-group-append" data-target="#correo">
+                        <div class="input-group-text"><i class="fa fa-at"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>CORREO EMPRESA:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="correoempresa" name="correoempresa" type="email" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                echo $this->respuestaperfil[0]['v_correo_empresa'];
+                                                                                                              } else {
+                                                                                                                echo '';
+                                                                                                              }; ?>" aria-describedby="emailHelp" placeholder="abc@dominio.xx..." autocomplete="off">
+                      <div class="input-group-append" data-target="#correoempresa">
+                        <div class="input-group-text"><i class="fa fa-at"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>N° DE EMERGENCIA:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="numero_emergencia" name="numero_emergencia" type="text" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                        echo $this->respuestaperfil[0]['v_celular_sos'];
+                                                                                                                      } else {
+                                                                                                                        echo '';
+                                                                                                                      }; ?>" onkeypress='return validaNumericos(event)' placeholder="numero (999888777)" autocomplete="off">
+                      <div class="input-group-append" data-target="#numero_emergencia">
+                        <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label>EL NÚMERO CORRESPONDE A:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="nombre_contacto" name="nombre_contacto" type="text" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                    echo $this->respuestaperfil[0]['v_nombre_sos'];
+                                                                                                                  } else {
+                                                                                                                    echo '';
+                                                                                                                  }; ?>" placeholder="nombre de contacto de emergencia..." autocomplete="off">
+                      <div class="input-group-append" data-target="#numero_emergencia">
+                        <div class="input-group-text"><i class="fa fa-user"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>DEPARTAMENTO:</label>
+                    <select class="form-control" id="departamento" name="departamento">
+                      <?php foreach ($this->datadepartamento as $dc) { ?>
+                        <option value="<?php echo $dc['i_iddep']; ?>" <?php if (count($this->respuestaperfil) > 0 && $dc['i_iddep'] == $this->respuestaperfil[0]['v_departamento']) {
+                                                                        echo 'selected="selected"';
+                                                                      } else {
+                                                                        echo '';
+                                                                      }; ?>><?php echo $dc['v_descripcion']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>PROVINCIA:</label>
+                    <select class="form-control" id="provincia" name="provincia">
+                      <?php foreach ($this->dataprovincia as $dc) { ?>
+                        <option value="<?php echo $dc['i_idpro']; ?>" <?php if (count($this->respuestaperfil) > 0 && $dc['i_idpro'] == $this->respuestaperfil[0]['v_provincia']) {
+                                                                        echo 'selected="selected"';
+                                                                      } else {
+                                                                        echo '';
+                                                                      }; ?>><?php echo $dc['v_descripcion']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>DISTRITO:</label>
+                    <!-- <div class="input-group" data-target-input="nearest">
+                      <input id="distrito" name="distrito" type="text" class="form-control" value="<?php //if (count($this->respuestaperfil) > 0) {
+                                                                                                    //echo $this->respuestaperfil[0]['v_distrito'];
+                                                                                                    //} else {
+                                                                                                    //echo '';
+                                                                                                    //}; 
+                                                                                                    ?>" placeholder="distrito donde nacistes..." autocomplete="off">
+                    </div> -->
+                    <select class="form-control" id="distrito" name="distrito">
+                      <?php foreach ($this->datadistritos as $dc) { ?>
+                        <option value="<?php echo $dc['i_iddis']; ?>" <?php if (count($this->respuestaperfil) > 0 && $dc['i_iddis'] == $this->respuestaperfil[0]['v_distrito']) {
+                                                                        echo 'selected="selected"';
+                                                                      } else {
+                                                                        echo '';
+                                                                      }; ?>><?php echo $dc['v_descripcion']; ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>DOMICILIO ACTUAL:</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="domicilio_actual" name="domicilio_actual" type="text" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                      echo $this->respuestaperfil[0]['v_domicilio_actual'];
+                                                                                                                    } else {
+                                                                                                                      echo '';
+                                                                                                                    }; ?>" placeholder="domicilio actual..." autocomplete="off">
+                      <div class="input-group-append" data-target="#domicilio_actual">
+                        <div class="input-group-text"><i class="fa fa-map-marked-alt"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>REFERENCIAS (DOMICILIO):</label>
+                    <div class="input-group" data-target-input="nearest">
+                      <input id="referencia_actual" name="referencia_actual" type="text" class="form-control" value="<?php if (count($this->respuestaperfil) > 0) {
+                                                                                                                        echo $this->respuestaperfil[0]['v_referencia'];
+                                                                                                                      } else {
+                                                                                                                        echo '';
+                                                                                                                      }; ?>" placeholder="ingrese referencia (frente a...), (a la altura de...)..." autocomplete="off">
+                      <div class="input-group-append" data-target="#domicilio_actual">
+                        <div class="input-group-text"><i class="fa fa-map-pin"></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button type="button" id="btn_guardar" class="btn btn-success btn-block"><b>GUARDAR DATOS</b></button>
+                  </div>
+                </div>
+
+              </div>
+
+              <div id="mensaje-guardar"></div>
+
+              <!-- </form> -->
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </section>
+
+</div>

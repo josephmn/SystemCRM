@@ -1,0 +1,129 @@
+.image {
+    /* position: relative;
+    width: 400px; */
+    vertical-align: middle;
+    border-style: none;
+}
+
+.image__img {
+    display: block;
+    width: 100%;
+}
+
+.image__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.image__overlay--blur {
+    backdrop-filter: blur(5px);
+}
+
+.image__overlay--primary {
+    background: #000000ce;
+}
+
+.image__overlay > * {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.image__overlay:hover {
+    opacity: 1;
+}
+
+.image__overlay:hover > * {
+    transform: translateY(0px);
+}
+
+.image__title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.image__description {
+    width: 90%;
+    height: 90%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 0.25em;
+}
+
+
+
+/* parte 2 */
+
+.image2 {
+    /* position: relative;
+    width: 400px; */
+    vertical-align: middle;
+    border-style: none;
+}
+
+.image__img2 {
+    display: block;
+    width: 100%;
+}
+
+.image__overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.image__overlay2--blur {
+    backdrop-filter: blur(5px);
+}
+
+.image__overlay2--primary {
+    background: #000000ce;
+}
+
+.image__overlay2 > * {
+    transform: translateY(20px);
+    transition: transform 0.25s;
+}
+
+.image__overlay2:hover {
+    opacity: 1;
+}
+
+.image__overlay2:hover > * {
+    transform: translateY(30px);
+}
+
+.image__title2 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.image__description2 {
+    width: 90%;
+    height: 90%;
+    text-align: center;
+    font-size: 1.2em;
+    /* margin-top: 0.25em; */
+}
